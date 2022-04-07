@@ -4,13 +4,18 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 const { default: mongoose } = require('mongoose');
+require('dotenv').config();
 const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
 app.use(cors());
 
 // Mongoose
-mongoose.connect("mongodb+srv://hustin-admin:w3SqCXnl4qXMJ7vt@cluster0.9qvpn.mongodb.net/checkin-and-checkout?retryWrites=true&w=majority");
+const MONGO_URI = process.env.MONGO_URI;
+mongoose.connect(MONGO_URI), {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+};
 
 // data scema and model
 const userSchema = {
@@ -39,7 +44,9 @@ app.post('/newuser', (req, res) => {
         user
     });
 
-    newUser.save();
+    newUser.save()
+    .then(() => res.json({ success: true }))
+    .catch(err => res.send("Error"))
 })
 
 // Delete user
@@ -50,6 +57,13 @@ app.delete("/delete/:id", (req, res) => {
           .then(() => res.json({ success: true })))
       .catch(err => res.send("Error"))
   });
+
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+    })
+}
 
 app.listen(port, () => {
     console.log(`running on port ${port}`)
