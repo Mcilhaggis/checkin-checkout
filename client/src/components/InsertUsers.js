@@ -9,6 +9,8 @@ function InsertUsers() {
     const validateContext = useContext(ValidateContext);
     const databaseContext = useContext(DatabaseRequest);
 
+    const [display, setDisplay] = useState(false);
+
     const [course, setCourse] = useState("");
     const [la, setLa] = useState("LA1");
     const [user, setUser] = useState("");
@@ -73,6 +75,15 @@ function InsertUsers() {
         databaseContext.getUsers();
     }
 
+    const setCourseName = course => {
+        setCourse(course);
+        setDisplay(false);
+    }
+
+    const hideCourses = () => {
+        setDisplay(false)
+    }
+
 
   return (
     <div>
@@ -120,9 +131,9 @@ function InsertUsers() {
                 check-in
             </button>
 
-            {/* {display && (
+            {display && (
                 <div onMouseLeave={hideCourses}>
-                    {data.filter(({course}) => course.indexOf(course.toUpperCase()) > -1 ).map((value, index) => {
+                    {CourseInfo.filter(({course}) => course.indexOf(course.toUpperCase()) > -1 ).map((value, index) => {
                         return (
                         
                         <div 
@@ -134,7 +145,7 @@ function InsertUsers() {
                         </div>)
                     })}
                 </div>
-            )} */}
+            )}
         </form>            
     </div>
 </div>  
