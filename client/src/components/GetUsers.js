@@ -1,26 +1,22 @@
-import React, {useState, useEffect} from 'react';
+import React, { useEffect, useContext} from 'react';
+import { UserContext, DatabaseRequest, ValidateContext} from '../utils/GlobalContext';
 
 function GetUsers() {
 
-    const [users, setUsers] = useState([
-        {
-          course: "",
-          la: "",
-          user: ""
-        }
-    ]);
+    const userContext = useContext(UserContext);
+    const validateContext = useContext(ValidateContext);
+    const databaseContext = useContext(DatabaseRequest);  
     
     useEffect(() => {
-        fetch('/users').then(res => {
-            if(res.ok) {
-            return res.json()
-            }
-        }).then(jsonRes => setUsers(jsonRes))
-    })
+        if (validateContext.validate) {
+            databaseContext.getUsers();
+            validateContext.setValidate(false);
+        }
+    }, [validateContext.validate])
 
   return (
     <div>      
-        {users && users.map((data, index) => {
+        {userContext.users && userContext.users.map((data, index) => {
             return (
                 <div
                     key={index}

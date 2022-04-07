@@ -27,6 +27,21 @@ app.get('/users', (req, res) => {
     Users.find().then(users => res.json(users));
 })
 
+// Add user
+app.post('/newuser', (req, res) => {
+    const course = req.body.course;
+    const la = req.body.la;
+    const user = req.body.user;
+
+    const newUser = new Users ({
+        course,
+        la,
+        user
+    });
+
+    newUser.save();
+})
+
 app.listen(port, () => {
     console.log(`running on port ${port}`)
 })
