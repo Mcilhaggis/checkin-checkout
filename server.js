@@ -27,6 +27,7 @@ const userSchema = {
     la: String,
     user: String
 }
+
 const Users = mongoose.model("Users", userSchema);
 
 // API routes
