@@ -4,14 +4,18 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 const { default: mongoose } = require('mongoose');
-require('dotenv').config();
-const port = process.env.PORT || 5000;
+require('dotenv').config({ path: "./config.env"});
 
-app.use(bodyParser.json());
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(bodyParser.json());
+
+const MONGO_URI = process.env.MONGO_URI;
+const port = process.env.PORT || 3001;
+
 
 // Mongoose
-const MONGO_URI = process.env.MONGO_URI;
 mongoose.connect(MONGO_URI), {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -23,7 +27,6 @@ const userSchema = {
     la: String,
     user: String
 }
-
 const Users = mongoose.model("Users", userSchema);
 
 // API routes
