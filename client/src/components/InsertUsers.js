@@ -50,8 +50,9 @@ function InsertUsers() {
                     alert(`${userContext.users[j].user} is currently in ${userContext.users[j].course} ${userContext.users[j].la}`)
                     break;
                 } else if (j === userContext.users.length - 1) {
-                    axios.post('/newuser', newUser);
-                    validateContext.setValidate(true);
+                    axios.post('/newuser', newUser)
+                    .then((res) => validateContext.setValidate(true))                 
+                    .catch(err => console.log(err))
                 } 
             }                               
         } else {
@@ -62,8 +63,9 @@ function InsertUsers() {
                 }
 
                 if (course === CourseInfo[i].course) {
-                    axios.post('/newuser', newUser);
-                    validateContext.setValidate(true);
+                    axios.post('/newuser', newUser)
+                    .then((res) => validateContext.setValidate(true))                 
+                    .catch(err => console.log(err))
                     break;
                 }                   
             } 
