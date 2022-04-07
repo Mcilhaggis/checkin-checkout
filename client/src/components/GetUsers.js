@@ -1,5 +1,6 @@
-import React, { useEffect, useContext} from 'react';
+import React, { useEffect, useContext, useState} from 'react';
 import { UserContext, DatabaseRequest, ValidateContext} from '../utils/GlobalContext';
+import axios from 'axios';
 
 function GetUsers() {
 
@@ -13,6 +14,12 @@ function GetUsers() {
             validateContext.setValidate(false);
         }
     }, [validateContext.validate])
+
+    const handleDelete = (id) => {        
+        axios.delete(`/delete/${id}`)
+        .then((res) => validateContext.setValidate(true))                 
+        .catch(err => console.log(err))
+    }
 
   return (
     <div>      
@@ -41,7 +48,7 @@ function GetUsers() {
                         className='grid-item'
                     >
                         <button
-                            // onClick={() => handleDelete(data._id)}
+                            onClick={() => handleDelete(data._id)}
                         >
                             check-out
                         </button>

@@ -22,8 +22,8 @@ const userSchema = {
 const Users = mongoose.model("Users", userSchema);
 
 // API routes
+// Get data
 app.get('/users', (req, res) => {
-    // res.send("express is here")
     Users.find().then(users => res.json(users));
 })
 
@@ -41,6 +41,15 @@ app.post('/newuser', (req, res) => {
 
     newUser.save();
 })
+
+// Delete user
+app.delete("/delete/:id", (req, res) => {
+    const id = req.params.id;
+    Users.findById(id)
+      .then(item => item.remove()
+          .then(() => res.json({ success: true })))
+      .catch(err => res.send("Error"))
+  });
 
 app.listen(port, () => {
     console.log(`running on port ${port}`)

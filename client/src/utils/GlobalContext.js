@@ -16,6 +16,7 @@ export const GlobalContext = (props) => {
                 return res.json()
                 }
             }).then(jsonRes => setUsers(jsonRes))
+            .catch(err => console.log(err));
         }
     }
 

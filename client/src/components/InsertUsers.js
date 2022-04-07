@@ -15,30 +15,16 @@ function InsertUsers() {
 
     const [numberOfLearningActivites, setNumberOfLearningActivities] = useState(0)
 
-    // const [validate, setValidate] = useState(false);
-
     useEffect(() => {
         for (let i = 0; i < CourseInfo.length; i++) {
             if (course === CourseInfo[i].course) {
-                // console.log("matched")
                 setNumberOfLearningActivities(CourseInfo[i].las)
                 break;
             } else {
-                // console.log("no match")
                 setNumberOfLearningActivities(0)
             }
         }
     }, [course]);
-
-    // useEffect(() => {
-
-    //     if (validate) {
-    //         databaseContext.getUsers();
-    //         setValidate(false);
-    //         console.log("hit!")
-    //     }
-
-    // });
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -58,15 +44,12 @@ function InsertUsers() {
         } else if (userContext.users.length > 0) {
 
             for (let j = 0; j < userContext.users.length; j++) {
-                console.log("userContext check hit")
                 if (course === userContext.users[j].course && la === userContext.users[j].la) {
                     alert(`${userContext.users[j].user} is currently in ${userContext.users[j].course} ${userContext.users[j].la}`)
                     break;
                 } else if (j === userContext.users.length - 1) {
-                    validateContext.setValidate(true);
                     axios.post('/newuser', newUser);
-                    // databaseContext.getUsers(); 
-                    console.log("posted")
+                    validateContext.setValidate(true);
                 } 
             }                               
         } else {
@@ -77,8 +60,8 @@ function InsertUsers() {
                 }
 
                 if (course === CourseInfo[i].course) {
-                    validateContext.setValidate(true);
                     axios.post('/newuser', newUser);
+                    validateContext.setValidate(true);
                     break;
                 }                   
             } 
@@ -129,7 +112,6 @@ function InsertUsers() {
                 placeholder='wpa name'
                 value={user}
                 onChange={(e) => setUser(e.target.value)}
-                // ref={nameRef}
             />
 
             <button                    
