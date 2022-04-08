@@ -23,7 +23,7 @@ export const GlobalContext = (props) => {
             .catch(err => console.log(err));
         },
         sendUpdate: function(validate, cb) {
-            socket.on('savedBook', data => cb(data))
+            socket.on('savedUser', data => cb(data))
     
             // only if validate is set to true then emit
             if (validate === true) {

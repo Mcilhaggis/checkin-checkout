@@ -24,7 +24,7 @@ function GetUsers() {
         .then((res) => {
             validateContext.setValidate(true)
             validated = true;
-            databaseContext.sendUpdate(validated, (data => console.log('received saved update: ', data)))
+            databaseContext.sendUpdate(validated, null)
         })                
         .catch(err => console.log(err))
     }
