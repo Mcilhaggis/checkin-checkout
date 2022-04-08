@@ -4,6 +4,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 const { default: mongoose } = require('mongoose');
+// Setting up socket.io
+const socketIo = require('socket.io');
+const http = require('http');
 require('dotenv').config({ path: "./config.env"});
 
 app.use(cors());
@@ -69,6 +72,19 @@ if(process.env.NODE_ENV === 'production') {
     })
 }
 
-app.listen(port, () => {
+// Creating socket connection
+const server = http.createServer(app)
+const io = socketIo(server);
+io.on('connection', client => {
+  console.log('connected')
+
+  client.on('event', data => { console.log(data)
+  io.emit('savedBook', data)
+  });
+  
+  client.on('disconnect', () => { console.log('disconnect')});
+});
+
+server.listen(port, () => {
     console.log(`running on port ${port}`)
 })
