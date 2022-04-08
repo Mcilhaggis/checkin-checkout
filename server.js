@@ -78,7 +78,7 @@ const io = socketIo(server);
 io.on('connection', client => {
   console.log('connected')
 
-  client.on('event', data => { console.log(data)
+  client.on('event', data => { console.log("this is the data: ",data)
   io.emit('savedBook', data)
   });
   

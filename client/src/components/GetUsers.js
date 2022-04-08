@@ -15,7 +15,7 @@ function GetUsers() {
             validateContext.setValidate(false);
             socketValidateContext.setSocketValidate(false)
         }
-    }, [validateContext.validate])
+    }, [validateContext.validate, socketValidateContext.socketValidate])
 
     const handleDelete = (id) => {
         let validated = false;
