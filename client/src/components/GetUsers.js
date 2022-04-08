@@ -24,7 +24,6 @@ function GetUsers() {
         .then((res) => {
             validateContext.setValidate(true)
             validated = true;
-            console.log(validated);
             databaseContext.sendUpdate(validated, (data => console.log('received saved update: ', data)))
         })                
         .catch(err => console.log(err))
@@ -32,7 +31,6 @@ function GetUsers() {
 
     databaseContext.sendUpdate(null, (data) => {
         socketValidateContext.setSocketValidate(data);
-        console.log("this is the data: ", data)
     })
 
   return (

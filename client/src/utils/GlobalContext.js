@@ -27,7 +27,6 @@ export const GlobalContext = (props) => {
     
             // only if validate is set to true then emit
             if (validate === true) {
-                console.log("set to true")
                 socket.emit('event', validate)
             }
         }

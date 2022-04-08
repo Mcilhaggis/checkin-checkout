@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
-import { UserContext, DatabaseRequest, ValidateContext } from '../utils/GlobalContext';
+import { UserContext, DatabaseRequest, ValidateContext, SocketValidateContext } from '../utils/GlobalContext';
 import CourseInfo from '../data/courseinfo.json';
 import axios from 'axios';
 
@@ -7,6 +7,7 @@ function InsertUsers() {
 
     const userContext = useContext(UserContext);
     const validateContext = useContext(ValidateContext);
+    const socketValidateContext = useContext(SocketValidateContext);
     const databaseContext = useContext(DatabaseRequest);
 
     const [display, setDisplay] = useState(false);
@@ -57,8 +58,14 @@ function InsertUsers() {
                         }
 
                         if (course === CourseInfo[i].course) {
+                            let validated = false;
+
                             axios.post('/newuser', newUser)
-                            .then((res) => validateContext.setValidate(true))                 
+                            .then((res) => {
+                                validateContext.setValidate(true)
+                                validated = true;
+                                databaseContext.sendUpdate(validated, (data => console.log('received saved update: ', data)))
+                            })                 
                             .catch(err => console.log(err))
                             break;
                         } 
@@ -74,8 +81,14 @@ function InsertUsers() {
                 }
 
                 if (course === CourseInfo[i].course) {
+                    let validated = false;
+
                     axios.post('/newuser', newUser)
-                    .then((res) => validateContext.setValidate(true))                 
+                    .then((res) => {
+                        validateContext.setValidate(true)
+                        validated = true;
+                        databaseContext.sendUpdate(validated, (data => console.log('received saved update: ', data)))
+                    })                  
                     .catch(err => console.log(err))
                     break;
                 }                   
