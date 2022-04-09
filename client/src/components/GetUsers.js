@@ -1,41 +1,38 @@
 import React, { useEffect, useContext } from 'react';
-import { UserContext, DatabaseRequest, ValidateContext, SocketValidateContext} from '../utils/GlobalContext';
+import { GlobalState, DatabaseRequest } from '../utils/GlobalContext';
 import axios from 'axios';
 
 function GetUsers() {
 
-    const userContext = useContext(UserContext);
-    const validateContext = useContext(ValidateContext);
-    const socketValidateContext = useContext(SocketValidateContext);
+    const globalState = useContext(GlobalState);
     const databaseContext = useContext(DatabaseRequest);  
-    
+
     useEffect(() => {
-        if (validateContext.validate || socketValidateContext.socketValidate) {
+        if (globalState.validate || globalState.socketValidate) {
             databaseContext.getUsers();
-            validateContext.setValidate(false);
-            socketValidateContext.setSocketValidate(false)
+            globalState.updateState({ validate: false, socketValidate: false });
         }
-    }, [validateContext.validate, socketValidateContext.socketValidate])
+    }, [globalState.validate, globalState.socketValidate])
 
     const handleDelete = (id) => {
         let validated = false;
         
         axios.delete(`/delete/${id}`)
         .then((res) => {
-            validateContext.setValidate(true)
             validated = true;
-            databaseContext.sendUpdate(validated, (data => null))
+            globalState.updateState({ validate: true });
+            databaseContext.sendUpdate(validated, (data => null));
         })                
         .catch(err => console.log(err))
     }
 
     databaseContext.sendUpdate(null, (data) => {
-        socketValidateContext.setSocketValidate(data);
+        globalState.updateState({ socketValidate: data });
     })
 
   return (
     <div>      
-        {userContext.users && userContext.users.map((data, index) => {
+        {globalState.users && globalState.users.map((data, index) => {
             return (
                 
                 <div

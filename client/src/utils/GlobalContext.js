@@ -1,46 +1,48 @@
 import React, { createContext, useState } from 'react';
 import socketIOClient from "socket.io-client";
-const socket = socketIOClient.connect()
+const socket = socketIOClient.connect();
 
-export const UserContext = createContext();
-export const ValidateContext = createContext();
-export const SocketValidateContext = createContext();
+export const GlobalState = createContext();
 export const DatabaseRequest = createContext();
 
 export const GlobalContext = (props) => {
 
-    const [users, setUsers] = useState([]);
-    const [validate, setValidate] = useState(true);
-    const [socketValidate, setSocketValidate] = useState(false);
+    const globalState = {
+        users: [],
+        validate: true,
+        socketValidate: false,
+
+        updateState: (stateUpdates) => {
+            setStateInfo(currentStateInfo => ({ ...currentStateInfo, ...stateUpdates}));
+        }
+    };
+
+    const [stateInfo, setStateInfo] = useState(globalState);
 
     const databaseRequest = {
         getUsers: () => {
             fetch('/users').then(res => {
                 if(res.ok) {
-                return res.json()
+                return res.json();
                 }
-            }).then(jsonRes => setUsers(jsonRes))
+            }).then(jsonRes => globalState.updateState({ users: jsonRes }))
             .catch(err => console.log(err));
         },
         sendUpdate: function(validate, cb) {
-            socket.on('savedUser', data => cb(data))
+            socket.on('savedUser', data => cb(data));
     
             // only if validate is set to true then emit
             if (validate === true) {
-                socket.emit('event', validate)
+                socket.emit('event', validate);
             }
         }
     }
 
   return (
-    <UserContext.Provider value={{users, setUsers}}>
-        <ValidateContext.Provider value={{validate, setValidate}}>
-            <SocketValidateContext.Provider value={{socketValidate, setSocketValidate}}>
-                <DatabaseRequest.Provider value={databaseRequest}>
-                    {props.children}                
-                </DatabaseRequest.Provider>
-            </SocketValidateContext.Provider>
-        </ValidateContext.Provider>
-    </UserContext.Provider>
+    <GlobalState.Provider value={stateInfo}>
+        <DatabaseRequest.Provider value={databaseRequest}>
+            {props.children}                
+        </DatabaseRequest.Provider>
+    </GlobalState.Provider>
   )
 }
