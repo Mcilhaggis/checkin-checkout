@@ -38,7 +38,7 @@ function InsertUsers() {
             setRender(true);
             setLa("ILO");
         }
-    }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -89,7 +89,8 @@ function InsertUsers() {
                             .then((res) => {
                                 validated = true;
                                 globalState.updateState({ validate: true });
-                                databaseContext.sendUpdate(validated, (data => null));
+                                databaseContext.getUpdate(validated, (data => null));
+                                databaseContext.saveUpdate(newUser, (data => null));
                             })                 
                             .catch(err => console.log(err))
                             break;
@@ -112,7 +113,8 @@ function InsertUsers() {
                     .then((res) => {
                         validated = true;
                         globalState.updateState({ validate: true });
-                        databaseContext.sendUpdate(validated, (data => null));
+                        databaseContext.getUpdate(validated, (data => null));
+                        databaseContext.saveUpdate(newUser, (data => null));
                     })                  
                     .catch(err => console.log(err))
                     break;
@@ -125,12 +127,16 @@ function InsertUsers() {
         setAsset("");
         setUser("");
         setRender(false);
-    }
+    };
+
+    databaseContext.saveUpdate(null, (data) => {
+        globalState.updateState({ newUser: data });
+        // console.log("data: ", data)
+    });
 
   return (
     <div>
         <h1>Check-in or Check-out</h1>
-
         <div>
             <form
                 onSubmit={handleSubmit}
@@ -141,7 +147,6 @@ function InsertUsers() {
                     value={course}
                     onChange={(e) => handleCourseAndAssets(e)}
                 />
-                {console.log(la)}
                 <select 
                     name="la"
                     onChange={(e) => setLa(e.target.value)}
