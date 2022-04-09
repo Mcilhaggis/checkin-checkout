@@ -11,6 +11,7 @@ export const GlobalContext = (props) => {
         users: [],
         validate: true,
         socketValidate: false,
+        newUser: {},
 
         updateState: (stateUpdates) => {
             setStateInfo(currentStateInfo => ({ ...currentStateInfo, ...stateUpdates}));
@@ -28,12 +29,19 @@ export const GlobalContext = (props) => {
             }).then(jsonRes => globalState.updateState({ users: jsonRes }))
             .catch(err => console.log(err));
         },
-        sendUpdate: function(validate, cb) {
-            socket.on('savedUser', data => cb(data));
+        getUpdate: function(validate, cb) {
+            socket.on('getUser', data => cb(data));
     
             // only if validate is set to true then emit
             if (validate === true) {
                 socket.emit('event', validate);
+            }
+        },
+        saveUpdate: function(newUser, cb) {
+            socket.on('saveUser', data => cb(data));
+
+            if (newUser) {
+                socket.emit('event', newUser)
             }
         }
     }

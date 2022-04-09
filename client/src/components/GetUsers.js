@@ -12,7 +12,7 @@ function GetUsers() {
             databaseContext.getUsers();
             globalState.updateState({ validate: false, socketValidate: false });
         }
-    }, [globalState.validate, globalState.socketValidate])
+    }, [globalState.validate, globalState.socketValidate]);
 
     const handleDelete = (id) => {
         let validated = false;
@@ -21,14 +21,14 @@ function GetUsers() {
         .then((res) => {
             validated = true;
             globalState.updateState({ validate: true });
-            databaseContext.sendUpdate(validated, (data => null));
+            databaseContext.getUpdate(validated, (data => null));
         })                
         .catch(err => console.log(err))
-    }
+    };
 
-    databaseContext.sendUpdate(null, (data) => {
+    databaseContext.getUpdate(null, (data) => {
         globalState.updateState({ socketValidate: data });
-    })
+    });
 
   return (
     <div className='data-container'>      
