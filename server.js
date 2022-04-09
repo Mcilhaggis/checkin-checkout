@@ -28,6 +28,7 @@ mongoose.connect(MONGO_URI), {
 const userSchema = {
     course: String,
     la: String,
+    asset: { type: String, required: false },
     user: String
 }
 
@@ -43,11 +44,13 @@ app.get('/users', (req, res) => {
 app.post('/newuser', (req, res) => {
     const course = req.body.course;
     const la = req.body.la;
+    const asset = req.body.asset;
     const user = req.body.user;
 
     const newUser = new Users ({
         course,
         la,
+        asset,
         user
     });
 

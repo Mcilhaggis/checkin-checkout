@@ -9,8 +9,11 @@ function InsertUsers() {
     const databaseContext = useContext(DatabaseRequest);
 
     const [course, setCourse] = useState("");
-    const [la, setLa] = useState("LA1");
+    const [la, setLa] = useState("LA0");
+    const [asset, setAsset] = useState("");
     const [user, setUser] = useState("");
+
+    const [render, setRender] = useState(false);
 
     const [numberOfLearningActivites, setNumberOfLearningActivities] = useState(0);
 
@@ -25,14 +28,31 @@ function InsertUsers() {
         }
     }, [course]);
 
+    const handleCourseAndAssets = (e) => {
+        let toRenderOptionsOrNot = e.target.value;
+        setCourse(e.target.value.toUpperCase());
+
+        if (toRenderOptionsOrNot.length === 0) {
+            setRender(false);
+        } else {
+            setRender(true);
+            setLa("ILO");
+        }
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         
         const newUser = {
             course: course,
             la: la,
+            asset: asset,
             user: user
         };
+        
+        if (la !== "ILO" && la !== "Lockerdoc") {
+            newUser.asset = "";
+        }
 
         if (!course && !user) {
             alert("you must fill in the required fields");
@@ -40,10 +60,19 @@ function InsertUsers() {
             alert("please insert a wpa name");
         } else if (!course && user) {
             alert("please insert a course name");
-        } else if (globalState.users.length > 0) {
+        } else if ((la === "ILO" || la === "Lockerdoc") && !asset) {
+            if (la === "ILO") {
+                alert("please insert ILO asset number(s)");
+            } else {
+                alert("please insert Lockerdoc asset number(s)");
+            }
+        } 
+        
+        else if (globalState.users.length > 0) {
 
             for (let j = 0; j < globalState.users.length; j++) {
-                if (course === globalState.users[j].course && la === globalState.users[j].la) {
+                
+                if (course === globalState.users[j].course && la === globalState.users[j].la && la !== "ILO" && la !== "Lockerdoc") {
                     alert(`${globalState.users[j].user} is currently in ${globalState.users[j].course} ${globalState.users[j].la}`);
                     break;
                 } else if (j === globalState.users.length - 1) {
@@ -92,8 +121,10 @@ function InsertUsers() {
         }        
         
         setCourse("");
-        setLa("LA1");
+        setLa("LA0");
+        setAsset("");
         setUser("");
+        setRender(false);
     }
 
   return (
@@ -108,14 +139,14 @@ function InsertUsers() {
                     name="course"
                     placeholder="course name"                
                     value={course}
-                    onChange={(e) => setCourse(e.target.value.toUpperCase())}
+                    onChange={(e) => handleCourseAndAssets(e)}
                 />
-
+                {console.log(la)}
                 <select 
                     name="la"
                     onChange={(e) => setLa(e.target.value)}
                 >              
-                    {numberOfLearningActivites === 0 ? <option name="la" value={la}>LA0</option> : [...Array(numberOfLearningActivites)].map((value, index) => {
+                    {numberOfLearningActivites > 0 ? [...Array(numberOfLearningActivites)].map((value, index) => {
                         return (
                             <option 
                                 key={index} 
@@ -125,8 +156,55 @@ function InsertUsers() {
                                 {`LA${index + 1}`}
                             </option>
                         )
-                    })}     
+                    }):null}     
+                    {numberOfLearningActivites > 0 ? [...Array(numberOfLearningActivites)].map((value, index) => {
+                        return (
+                            <option 
+                                key={index} 
+                                name="tg"
+                                value={`TG${index + 1}`}
+                            >
+                                {`TG${index + 1}`}
+                            </option>
+                        )
+                    }): null}
+
+                    {!render ? 
+                    <>
+                        <option
+                            name="LA0"
+                            value="LA0"
+                            >
+                            LA0
+                        </option>     
+                    </>                    
+                    : null}
+
+                    {render ? 
+                    <>
+                        <option
+                            name="ILO"
+                            value="ILO"
+                            >
+                            ILO
+                        </option>     
+                        <option
+                            name="Lockerdoc"
+                            value="Lockerdoc"
+                            >
+                            Lockerdoc
+                        </option> 
+                    </>                    
+                    : null}
+   
                 </select>
+                <input 
+                    name="asset" 
+                    placeholder='ILO, Lockerdoc, ect...'
+                    value={asset}
+                    onChange={(e) => setAsset(e.target.value)}
+                    disabled={la !== "ILO" && la !== "Lockerdoc" && true}
+                />
 
                 <input 
                     name="user" 

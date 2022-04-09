@@ -31,13 +31,14 @@ function GetUsers() {
     })
 
   return (
-    <div>      
+    <div className='data-container'>      
         {globalState.users && globalState.users.map((data, index) => {
             return (
                 
                 <div
                     key={index}
-                    className="grid-container"
+                    // className="grid-container"
+                    className={!data.asset ? 'grid-container' : 'grid-container-2'}
                 >
                     <div
                         className='grid-item'
@@ -49,6 +50,12 @@ function GetUsers() {
                     >
                         {data.la}
                     </div>
+                    {data.asset ? 
+                    <div
+                        className='grid-item'
+                    >
+                        {data.asset}
+                    </div> : null}
                     <div
                         className='grid-item'
                     >
