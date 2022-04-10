@@ -130,8 +130,9 @@ function InsertUsers() {
     };
 
     databaseContext.saveUpdate(null, (data) => {
-        globalState.updateState({ newUser: data });
-        // console.log("data: ", data)
+        if (!data._id) {
+            globalState.updateState({ newUser: data });
+        }
     });
 
   return (
