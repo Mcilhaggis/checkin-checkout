@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState, useRef } from 'react';
 import { GlobalState } from "../utils/GlobalContext";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import saved from '../sounds/saved.mp3'
+import deleted from '../sounds/deleted.mp3'
 
 function OldNotification() {
 
@@ -44,7 +44,7 @@ function OldNotification() {
         <audio      
             ref={audioRef}        
         >
-            <source src={saved} />
+            <source src={deleted} />
         </audio>
     </div>
   )
