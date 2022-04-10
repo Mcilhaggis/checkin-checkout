@@ -12,6 +12,7 @@ export const GlobalContext = (props) => {
         validate: true,
         socketValidate: false,
         newUser: {},
+        oldUser: {},
 
         updateState: (stateUpdates) => {
             setStateInfo(currentStateInfo => ({ ...currentStateInfo, ...stateUpdates}));
@@ -41,7 +42,14 @@ export const GlobalContext = (props) => {
             socket.on('saveUser', data => cb(data));
 
             if (newUser) {
-                socket.emit('event', newUser)
+                socket.emit('event', newUser);
+            }
+        },
+        deleteUpdate: function(oldUser, cb) {
+            socket.on('deleteUser', data => cb(data));
+
+            if (oldUser) {
+                socket.emit('event', oldUser);
             }
         }
     }

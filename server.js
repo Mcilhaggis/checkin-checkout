@@ -81,11 +81,13 @@ const io = socketIo(server);
 io.on('connection', client => {
   console.log('connected')
 
-  client.on('event', data => { console.log("this is the data: ",data)
+  client.on('event', data => { console.log("this is the data: ", data);
   
-  io.emit('getUser', data)
+  io.emit('getUser', data);
 
-  io.emit('saveUser', data)
+  io.emit('saveUser', data);
+
+  io.emit('deleteUser', data);
   
   });
 

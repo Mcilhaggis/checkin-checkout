@@ -14,20 +14,28 @@ function GetUsers() {
         }
     }, [globalState.validate, globalState.socketValidate]);
 
-    const handleDelete = (id) => {
+    const handleDelete = (id, data) => {
         let validated = false;
+        let deleted = data;
         
         axios.delete(`/delete/${id}`)
         .then((res) => {
             validated = true;
             globalState.updateState({ validate: true });
-            databaseContext.getUpdate(validated, (data => null));
+            databaseContext.getUpdate(validated, (data => null));            
+            databaseContext.deleteUpdate(deleted, (data => null))
         })                
         .catch(err => console.log(err))
     };
 
     databaseContext.getUpdate(null, (data) => {
         globalState.updateState({ socketValidate: data });
+    });
+
+    databaseContext.deleteUpdate(null, (data) => {
+        if (data._id) {
+            globalState.updateState({ oldUser: data });
+        }
     });
 
   return (
@@ -37,7 +45,6 @@ function GetUsers() {
                 
                 <div
                     key={index}
-                    // className="grid-container"
                     className={!data.asset ? 'grid-container' : 'grid-container-2'}
                 >
                     <div
@@ -65,7 +72,7 @@ function GetUsers() {
                         className='grid-item'
                     >
                         <button
-                            onClick={() => handleDelete(data._id)}
+                            onClick={() => handleDelete(data._id, data)}
                         >
                             check-out
                         </button>
