@@ -29,7 +29,9 @@ function GetUsers() {
     };
 
     databaseContext.getUpdate(null, (data) => {
-        globalState.updateState({ socketValidate: data });
+        if (data === true) {
+            globalState.updateState({ socketValidate: data });
+        }
     });
 
     databaseContext.deleteUpdate(null, (data) => {
