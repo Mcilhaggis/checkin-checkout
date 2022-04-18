@@ -1,5 +1,16 @@
 @mixin styles {
     .data-container {
+        display: flex;
+        flex-wrap: wrap;
+
+        .data-item {
+            flex: 1 0 21%; 
+            margin: 5px;
+            height: 100%;
+            background-color: lightblue;
+        }
+
+
         .grid-container {
             display: grid;
             grid-template-columns: auto auto auto auto;
