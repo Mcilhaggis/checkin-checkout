@@ -79,7 +79,7 @@ function GetUsers() {
 
                     {globalState.users && globalState.users.map((data, index) => {
                         return (
-                            course === data.course ? 
+                            course === data.course && 
                             <>
                                 <tr 
                                     key={index}
@@ -96,9 +96,14 @@ function GetUsers() {
                                         </button>                        
                                     </td>
                                 </tr>
-                                <hr/>
-                            </>
-                            : null
+                                <tr>
+                                    <td 
+                                        colSpan="4"                                        
+                                    >
+                                        <hr style={{maxWidth: '90%'}}/>
+                                    </td>
+                                </tr>
+                            </>                           
                         )
                     })}
 
