@@ -21,10 +21,11 @@ function GetUsers() {
             let allCourses = [];
 
             for (let i = 0; i < globalState.users.length; i++) {
-                allCourses.push(globalState.users[i].course)
+                allCourses.push(globalState.users[i].course);
+                allCourses.sort();
             }
     
-            setCourseNames(Array.from(new Set(allCourses)))
+            setCourseNames(Array.from(new Set(allCourses)));
         }
     }, [globalState.users]);
 
@@ -64,7 +65,6 @@ function GetUsers() {
                 className='data-item' 
             >
 
-                {/* <table style={{width: "100%", borderCollapse: 'collapse'}}> */}
                 <table style={{width: "100%"}}>
                     <tr>
                         <th className='data-item-heading'>{course}</th>
@@ -77,7 +77,7 @@ function GetUsers() {
                         <td className='data-item-titles'>Check-out</td>
                     </tr>
 
-                    {globalState.users && globalState.users.map((data, index) => {
+                    {globalState.users && globalState.users.sort((a, b) => a.la.localeCompare(b.la)).map((data, index) => {
                         return (
                             course === data.course && 
                             <>
