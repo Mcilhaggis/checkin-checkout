@@ -235,10 +235,12 @@ function InsertUsers() {
                     type="submit"
                     className='parent-check-in-btn'
                     aria-label='check-in'
+                    tabIndex='1'
                 >
                     <span 
                         className='check-in-btn'
                         title='check-in'
+                        tabIndex='0'
                     />
                 </button>
 

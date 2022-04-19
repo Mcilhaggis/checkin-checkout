@@ -96,6 +96,7 @@ function GetUsers() {
                                                 className='check-out-btn' 
                                                 title='check-out'
                                                 onClick={() => handleDelete(data._id, data)}
+                                                tabIndex='0'
                                             />
                                         </td>
                                     </tr>
