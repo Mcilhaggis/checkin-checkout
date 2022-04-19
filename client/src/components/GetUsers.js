@@ -1,7 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { GlobalState, DatabaseRequest } from '../utils/GlobalContext';
 import axios from 'axios';
-import Images from '../components/Images';
 
 function GetUsers() {
 
@@ -93,10 +92,8 @@ function GetUsers() {
                                         <td>{data.asset ? data.asset : "N/A"}</td>
                                         <td>{data.user}</td> 
                                         <td>
-                                            <img 
+                                            <i 
                                                 className='check-out-btn' 
-                                                src={Images.CheckOut} 
-                                                alt='check-out' 
                                                 title='check-out'
                                                 onClick={() => handleDelete(data._id, data)}
                                             />

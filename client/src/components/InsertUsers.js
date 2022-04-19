@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import { DatabaseRequest, GlobalState } from '../utils/GlobalContext';
 import CourseInfo from '../data/courseinfo.json';
 import axios from 'axios';
-import Images from '../components/Images';
+import Logo from '../images/logo.svg';
 
 function InsertUsers() {
 
@@ -138,7 +138,18 @@ function InsertUsers() {
 
   return (
     <div>
-        <h1>Check-in or Check-out</h1>
+        <img className='logo' src={Logo} alt='logo' />
+        <h1>
+            <span className='check-in'>
+                Check-in
+            </span> 
+            <span className='divider'>
+                /
+            </span> 
+            <span className='check-out'>
+                Check-out
+            </span>
+        </h1>
         <div>
             <form
                 onSubmit={handleSubmit}
@@ -207,7 +218,7 @@ function InsertUsers() {
                 </select>
                 <input 
                     name="asset" 
-                    placeholder='ILO, Lockerdoc, ect...'
+                    placeholder='Asset#'
                     value={asset}
                     onChange={(e) => setAsset(e.target.value)}
                     disabled={la !== "ILO" && la !== "Lockerdoc" && true}
@@ -220,21 +231,17 @@ function InsertUsers() {
                     onChange={(e) => setUser(e.target.value)}
                 />
 
-                {/* <span>Check-in</span> */}
-                
-                <input 
-                    className='check-in-btn'
-                    type="image" 
-                    src={Images.CheckIn} 
-                    alt="check-in"
-                    title='check-in'
-                />
-
-                {/* <button                    
+                <button                    
                     type="submit"
+                    className='parent-check-in-btn'
+                    aria-label='check-in'
                 >
-                    check-in
-                </button> */}
+                    <span 
+                        className='check-in-btn'
+                        title='check-in'
+                    />
+                </button>
+
             </form>            
         </div>
     </div>  
