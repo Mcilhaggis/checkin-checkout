@@ -137,7 +137,7 @@ function InsertUsers() {
     });
 
   return (
-    <div>
+    <div className='insert-users-background'>
         <img className='logo' src={Logo} alt='logo' />
         <h1>
             <span className='check-in'>
