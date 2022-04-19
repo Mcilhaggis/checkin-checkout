@@ -97,6 +97,7 @@ function GetUsers() {
                                                 className='check-out-btn' 
                                                 src={Images.CheckOut} 
                                                 alt='check-out' 
+                                                title='check-out'
                                                 onClick={() => handleDelete(data._id, data)}
                                             />
                                         </td>

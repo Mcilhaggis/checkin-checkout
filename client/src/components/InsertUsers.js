@@ -221,12 +221,13 @@ function InsertUsers() {
                 />
 
                 {/* <span>Check-in</span> */}
-
+                
                 <input 
                     className='check-in-btn'
                     type="image" 
                     src={Images.CheckIn} 
                     alt="check-in"
+                    title='check-in'
                 />
 
                 {/* <button                    
