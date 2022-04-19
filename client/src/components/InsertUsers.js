@@ -218,7 +218,7 @@ function InsertUsers() {
                 </select>
                 <input 
                     name="asset" 
-                    placeholder='Asset#'
+                    placeholder='asset#'
                     value={asset}
                     onChange={(e) => setAsset(e.target.value)}
                     disabled={(la !== "ILO" && la !== "LD" && true) || !course}
