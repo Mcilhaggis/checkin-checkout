@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { GlobalState, DatabaseRequest } from '../utils/GlobalContext';
 import axios from 'axios';
+import Images from '../components/Images';
 
 function GetUsers() {
 
@@ -66,92 +67,55 @@ function GetUsers() {
             >
 
                 <table style={{width: "100%"}}>
-                    <tr>
-                        <th className='data-item-heading'>{course}</th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th className='data-item-heading'>{course}</th>
+                        </tr>
+                    </thead>
 
-                    <tr>
-                        <td className='data-item-titles'>LA</td>
-                        <td className='data-item-titles'>Asset</td>
-                        <td className='data-item-titles'>User</td>
-                        <td className='data-item-titles'>Check-out</td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <td className='data-item-titles'>LA</td>
+                            <td className='data-item-titles'>Asset</td>
+                            <td className='data-item-titles'>User</td>
+                            <td className='data-item-titles'>Check-out</td>
+                        </tr>
 
-                    {globalState.users && globalState.users.sort((a, b) => a.la.localeCompare(b.la)).map((data, index) => {
-                        return (
-                            course === data.course && 
-                            <>
-                                <tr 
-                                    key={index}
-                                    className='data-item-contents'
-                                >
-                                    <td>{data.la}</td>
-                                    <td>{data.asset ? data.asset : "N/A"}</td>
-                                    <td>{data.user}</td> 
-                                    <td>
-                                        <button
-                                            onClick={() => handleDelete(data._id, data)}
-                                            >
-                                            check-out
-                                        </button>                        
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td 
-                                        colSpan="4"                                        
+                        {globalState.users && globalState.users.sort((a, b) => a.la.localeCompare(b.la)).map((data, index) => {
+                            return (
+                                course === data.course && 
+                                <>
+                                    <tr 
+                                        key={index}
+                                        className='data-item-contents'
                                     >
-                                        <hr style={{maxWidth: '90%'}}/>
-                                    </td>
-                                </tr>
-                            </>                           
-                        )
-                    })}
+                                        <td>{data.la}</td>
+                                        <td>{data.asset ? data.asset : "N/A"}</td>
+                                        <td>{data.user}</td> 
+                                        <td>
+                                            <img 
+                                                className='check-out-btn' 
+                                                src={Images.CheckOut} 
+                                                alt='check-out' 
+                                                onClick={() => handleDelete(data._id, data)}
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td 
+                                            colSpan="4"                                        
+                                        >
+                                            <hr style={{maxWidth: '90%'}}/>
+                                        </td>
+                                    </tr>
+                                </>                           
+                            )
+                        })}
+                    </tbody>
 
                 </table>
             </div>            
         )}
-
-        {/* {globalState.users && globalState.users.map((data, index) => {
-            return (
-                
-                <div
-                    key={index}
-                    className={!data.asset ? 'grid-container' : 'grid-container-2'}
-                >
-                    <div
-                        className='grid-item'
-                    >
-                        {data.course}
-                    </div>
-                    <div
-                        className='grid-item'
-                    >
-                        {data.la}
-                    </div>
-                    {data.asset ? 
-                    <div
-                        className='grid-item'
-                    >
-                        {data.asset}
-                    </div> : null}
-                    <div
-                        className='grid-item'
-                    >
-                        {data.user}
-                    </div>
-                    <div
-                        className='grid-item'
-                    >
-                        <button
-                            onClick={() => handleDelete(data._id, data)}
-                        >
-                            check-out
-                        </button>
-                    </div>
-                </div>
-            )
-        })} */}
-
     </div>
   )
 }

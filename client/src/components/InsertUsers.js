@@ -2,6 +2,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import { DatabaseRequest, GlobalState } from '../utils/GlobalContext';
 import CourseInfo from '../data/courseinfo.json';
 import axios from 'axios';
+import Images from '../components/Images';
 
 function InsertUsers() {
 
@@ -219,11 +220,20 @@ function InsertUsers() {
                     onChange={(e) => setUser(e.target.value)}
                 />
 
-                <button                    
+                {/* <span>Check-in</span> */}
+
+                <input 
+                    className='check-in-btn'
+                    type="image" 
+                    src={Images.CheckIn} 
+                    alt="check-in"
+                />
+
+                {/* <button                    
                     type="submit"
                 >
                     check-in
-                </button>
+                </button> */}
             </form>            
         </div>
     </div>  
