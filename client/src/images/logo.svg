@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#B8FCE1;}
+	.st1{fill:#6DFDC3;}
+	.st2{fill:#74A2AB;}
+</style>
+<g>
+	<path class="st0" d="M0,819.63c0,4.54,0.22,9.03,0.55,13.49L0,193.98V819.63z"/>
+	<path class="st0" d="M600.99,794.97L806.02,1000h13.61c99.62,0,180.37-80.75,180.37-180.37v-13.61L794.97,600.99L600.99,794.97z"/>
+	<path class="st0" d="M999.45,166.89l0.55,639.13V180.37C1000,175.83,999.78,171.34,999.45,166.89z"/>
+	<path class="st0" d="M399.01,205.03L193.98,0h-13.61C80.75,0,0,80.75,0,180.37v13.61l205.03,205.03L399.01,205.03z"/>
+	<polygon class="st1" points="403.01,596.99 596.99,403.01 399.01,205.03 205.03,399.01 0,193.98 0.55,833.11 0.7,1000 180.37,1000 
+		806.02,1000 600.99,794.97 	"/>
+	<polygon class="st2" points="999.3,0 819.63,0 193.98,0 399.01,205.03 596.99,403.01 403.01,596.99 600.99,794.97 794.97,600.99 
+		1000,806.02 999.45,166.89 	"/>
+</g>
+</svg>

@@ -5,10 +5,30 @@
     },
     {
         "course": "ARMU2",
-        "las": 6
+        "las": 8
     },
     {
         "course": "ARMU3",
-        "las": 4
+        "las": 8
+    },
+    {
+        "course": "ARMU4",
+        "las": 8
+    },
+    {
+        "course": "ARMU5",
+        "las": 8
+    },
+    {
+        "course": "ARMU6",
+        "las": 8
+    },
+    {
+        "course": "ARMU7",
+        "las": 8
+    },
+    {
+        "course": "ARMU8",
+        "las": 8
     }
 ]

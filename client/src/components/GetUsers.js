@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { GlobalState, DatabaseRequest } from '../utils/GlobalContext';
 import axios from 'axios';
 
@@ -7,12 +7,27 @@ function GetUsers() {
     const globalState = useContext(GlobalState);
     const databaseContext = useContext(DatabaseRequest);  
 
+    const [courseNames, setCourseNames] = useState([]);
+
     useEffect(() => {
         if (globalState.validate || globalState.socketValidate) {
             databaseContext.getUsers();
             globalState.updateState({ validate: false, socketValidate: false });
         }
-    }, [globalState.validate, globalState.socketValidate]);
+    }, [globalState, databaseContext]);
+
+    useEffect(() => {
+        if (globalState.users) {
+            let allCourses = [];
+
+            for (let i = 0; i < globalState.users.length; i++) {
+                allCourses.push(globalState.users[i].course);
+                allCourses.sort();
+            }
+    
+            setCourseNames(Array.from(new Set(allCourses)));
+        }
+    }, [globalState.users]);
 
     const handleDelete = (id, data) => {
         let validated = false;
@@ -41,48 +56,65 @@ function GetUsers() {
     });
 
   return (
-    <div className='data-container'>      
-        {globalState.users && globalState.users.map((data, index) => {
-            return (
-                
-                <div
-                    key={index}
-                    className={!data.asset ? 'grid-container' : 'grid-container-2'}
-                >
-                    <div
-                        className='grid-item'
-                    >
-                        {data.course}
-                    </div>
-                    <div
-                        className='grid-item'
-                    >
-                        {data.la}
-                    </div>
-                    {data.asset ? 
-                    <div
-                        className='grid-item'
-                    >
-                        {data.asset}
-                    </div> : null}
-                    <div
-                        className='grid-item'
-                    >
-                        {data.user}
-                    </div>
-                    <div
-                        className='grid-item'
-                    >
-                        <button
-                            onClick={() => handleDelete(data._id, data)}
-                        >
-                            check-out
-                        </button>
-                    </div>
-                </div>
-            )
-        })}
+    <div className='data-container'> 
 
+        {courseNames && courseNames.map((course, index) =>         
+        
+            <div 
+                key={index}
+                className='data-item' 
+            >
+
+                <table style={{width: "100%"}}>
+                    <thead>
+                        <tr>
+                            <th className='data-item-heading'>{course}</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td className='data-item-titles'>LA</td>
+                            <td className='data-item-titles'>Asset</td>
+                            <td className='data-item-titles'>User</td>
+                            <td className='data-item-titles'>Check-out</td>
+                        </tr>
+
+                        {globalState.users && globalState.users.sort((a, b) => a.la.localeCompare(b.la)).map((data, index) => {
+                            return (
+                                course === data.course && 
+                                <>
+                                    <tr 
+                                        key={index}
+                                        className='data-item-contents'
+                                    >
+                                        <td>{data.la}</td>
+                                        <td>{data.asset ? data.asset : "N/A"}</td>
+                                        <td>{data.user}</td> 
+                                        <td>
+                                            <i 
+                                                className='check-out-btn' 
+                                                title='check-out'
+                                                onClick={() => handleDelete(data._id, data)}
+                                                tabIndex='0'
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td 
+                                            colSpan="4"                                        
+                                        >
+                                            <hr className='data-item-line' />
+                                        </td>
+                                    </tr>
+                                </>                           
+                            )
+                        })}
+                    </tbody>
+
+                </table>
+            </div>            
+        )}
     </div>
   )
 }

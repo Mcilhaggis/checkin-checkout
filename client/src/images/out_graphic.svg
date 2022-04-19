@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#B8FCE1;}
+	.st1{fill:#B8CDFC;}
+	.st2{fill:#74A2AB;}
+</style>
+<g>
+	<path class="st0" d="M688.4,708.3L688,708L562.6,833.3l-198-198l-198-198L399,205L194,0h410.8l0,0H180.4C80.8,0,0,80.8,0,180.4
+		v639.3C0,919.3,80.8,1000,180.4,1000h639.3c99.6,0,180.4-80.8,180.4-180.4V806L795.3,601.4L688.4,708.3z"/>
+	<polygon class="st0" points="1000,806 1000,396.7 999.7,397.1 	"/>
+	<path class="st1" d="M999.4,166.2l0.2,230.9l0.3-0.4V180.4C1000,175.6,999.8,170.9,999.4,166.2z"/>
+	
+		<rect x="666" y="654.4" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -245.6878 716.1771)" class="st1" width="151.3" height="0.5"/>
+	<polygon class="st1" points="819.6,0 819.6,0 604.8,0 604.8,0 	"/>
+	<polygon class="st2" points="999.4,166.2 999.3,0 819.6,0 604.8,0 194,0 399,205 166.7,437.4 364.6,635.3 562.6,833.3 688,708 
+		795,601 795.3,601.4 1000,806 999.7,397.1 	"/>
+</g>
+</svg>
