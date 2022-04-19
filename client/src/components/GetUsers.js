@@ -104,7 +104,7 @@ function GetUsers() {
                                         <td 
                                             colSpan="4"                                        
                                         >
-                                            <hr style={{maxWidth: '90%'}}/>
+                                            <hr className='data-item-line' />
                                         </td>
                                     </tr>
                                 </>                           

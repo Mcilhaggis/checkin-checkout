@@ -6,8 +6,8 @@
         flex: 1 0 21%; 
         margin: 5px;
         height: 100%;
-        background-color: lightblue;
-        max-width: 466px;
+        background-color: #ecfcff;
+        max-width: 100%;
         border-radius: 5px;
 
         .data-item-heading {
@@ -16,7 +16,6 @@
             color: #787878;
             font-size: 30px;
             font-family: $inconsolata;
-            // text-align: center;
         }
 
         .data-item-titles {
@@ -27,7 +26,7 @@
         }
 
         .data-item-contents {
-            // font-family: $inconsolata;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
             color: #686868;
 
             .check-out-btn {
@@ -48,6 +47,11 @@
                     outline: none;
                 }
             }
+        }
+
+        .data-item-line {
+            max-width: 90%;
+            border-top: 1px solid #aba67d;
         }
     }
 }
