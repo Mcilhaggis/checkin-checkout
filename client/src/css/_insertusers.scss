@@ -1,7 +1,9 @@
 @import 'variables';
 
 .insert-users-background {
-    background-color: #f9f9f9;
+    background-image: url('../images/header-bg.png');
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 form {
