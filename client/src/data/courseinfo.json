@@ -30,5 +30,517 @@
     {
         "course": "ARMU8",
         "las": 8
+    },
+    {
+        "course": "LAWR1",
+        "las": 12
+    },
+    {
+        "course": "LAWR2",
+        "las": 12
+    },
+    {
+        "course": "LAWR3",
+        "las": 12
+    },
+    {
+        "course": "LAWR4",
+        "las": 12
+    },
+    {
+        "course": "LAWR5",
+        "las": 12
+    },
+    {
+        "course": "LAWR6",
+        "las": 12
+    },
+    {
+        "course": "LAWR7",
+        "las": 12
+    },
+    {
+        "course": "LAWR8",
+        "las": 12
+    },
+    {
+        "course": "MANU1",
+        "las": 12
+    },
+    {
+        "course": "MANU2",
+        "las": 12
+    },
+    {
+        "course": "MANU3",
+        "las": 12
+    },
+    {
+        "course": "MANU4",
+        "las": 12
+    },
+    {
+        "course": "MANU5",
+        "las": 12
+    },
+    {
+        "course": "MANU6",
+        "las": 12
+    },
+    {
+        "course": "MANU7",
+        "las": 12
+    },
+    {
+        "course": "MANU8",
+        "las": 12
+    },
+    {
+        "course": "LAML1",
+        "las": 12
+    },
+    {
+        "course": "LAML2",
+        "las": 12
+    },
+    {
+        "course": "LAML3",
+        "las": 12
+    },
+    {
+        "course": "LAML4",
+        "las": 12
+    },
+    {
+        "course": "LAML5",
+        "las": 12
+    },
+    {
+        "course": "LAML6",
+        "las": 12
+    },
+    {
+        "course": "LAML7",
+        "las": 12
+    },
+    {
+        "course": "LAML8",
+        "las": 12
+    },
+    {
+        "course": "MAFL1",
+        "las": 12
+    },
+    {
+        "course": "MAFL2",
+        "las": 12
+    },
+    {
+        "course": "MAFL3",
+        "las": 12
+    },
+    {
+        "course": "MAFL4",
+        "las": 12
+    },
+    {
+        "course": "MAFL5",
+        "las": 12
+    },
+    {
+        "course": "MAFL6",
+        "las": 12
+    },
+    {
+        "course": "MAFL7",
+        "las": 12
+    },
+    {
+        "course": "MAFL8",
+        "las": 12
+    },
+    {
+        "course": "LARE1",
+        "las": 12
+    },
+    {
+        "course": "LARE2",
+        "las": 12
+    },
+    {
+        "course": "LARE3",
+        "las": 12
+    },
+    {
+        "course": "LARE4",
+        "las": 12
+    },
+    {
+        "course": "LARE5",
+        "las": 12
+    },
+    {
+        "course": "LARE6",
+        "las": 12
+    },
+    {
+        "course": "LARE7",
+        "las": 12
+    },
+    {
+        "course": "LARE8",
+        "las": 12
+    },
+    {
+        "course": "MADA1",
+        "las": 12
+    },
+    {
+        "course": "MADA2",
+        "las": 12
+    },
+    {
+        "course": "MADA3",
+        "las": 12
+    },
+    {
+        "course": "MADA4",
+        "las": 12
+    },
+    {
+        "course": "MADA5",
+        "las": 12
+    },
+    {
+        "course": "MADA6",
+        "las": 12
+    },
+    {
+        "course": "MADA7",
+        "las": 12
+    },
+    {
+        "course": "MADA8",
+        "las": 12
+    },
+    {
+        "course": "LAOC1",
+        "las": 12
+    },
+    {
+        "course": "LAOC2",
+        "las": 12
+    },
+    {
+        "course": "LAOC3",
+        "las": 12
+    },
+    {
+        "course": "LAOC4",
+        "las": 12
+    },
+    {
+        "course": "LAOC5",
+        "las": 12
+    },
+    {
+        "course": "LAOC6",
+        "las": 12
+    },
+    {
+        "course": "LAOC7",
+        "las": 12
+    },
+    {
+        "course": "LAOC8",
+        "las": 12
+    },
+    {
+        "course": "MAAL1",
+        "las": 12
+    },
+    {
+        "course": "MAAL2",
+        "las": 12
+    },
+    {
+        "course": "MAAL3",
+        "las": 12
+    },
+    {
+        "course": "MAAL4",
+        "las": 12
+    },
+    {
+        "course": "MAAL5",
+        "las": 12
+    },
+    {
+        "course": "MAAL6",
+        "las": 12
+    },
+    {
+        "course": "MAAL7",
+        "las": 12
+    },
+    {
+        "course": "MAAL8",
+        "las": 12
+    },
+    {
+        "course": "MASP1",
+        "las": 12
+    },
+    {
+        "course": "MASP2",
+        "las": 12
+    },
+    {
+        "course": "MASP3",
+        "las": 12
+    },
+    {
+        "course": "MASP4",
+        "las": 12
+    },
+    {
+        "course": "MASP5",
+        "las": 12
+    },
+    {
+        "course": "MASP6",
+        "las": 12
+    },
+    {
+        "course": "MASP7",
+        "las": 12
+    },
+    {
+        "course": "MASP8",
+        "las": 12
+    },
+    {
+        "course": "GEGA7",
+        "las": 8
+    },
+    {
+        "course": "GEGA8",
+        "las": 8
+    },
+    {
+        "course": "GEGB7",
+        "las": 8
+    },
+    {
+        "course": "GEGB8",
+        "las": 8
+    },
+    {
+        "course": "HIHA7",
+        "las": 8
+    },
+    {
+        "course": "HIHA8",
+        "las": 8
+    },
+    {
+        "course": "HIHB7",
+        "las": 8
+    },
+    {
+        "course": "HIHB8",
+        "las": 8
+    },
+    {
+        "course": "SSHI1",
+        "las": 8
+    },
+    {
+        "course": "SSHI2",
+        "las": 8
+    },
+    {
+        "course": "SSHI3",
+        "las": 8
+    },
+    {
+        "course": "SSHI4",
+        "las": 8
+    },
+    {
+        "course": "SSHI5",
+        "las": 8
+    },
+    {
+        "course": "SSHI6",
+        "las": 8
+    },
+    {
+        "course": "SSPE1",
+        "las": 8
+    },
+    {
+        "course": "SSPE2",
+        "las": 8
+    },
+    {
+        "course": "SSPE3",
+        "las": 8
+    },
+    {
+        "course": "SSPE4",
+        "las": 8
+    },
+    {
+        "course": "SSPE5",
+        "las": 8
+    },
+    {
+        "course": "SSPE6",
+        "las": 8
+    },
+    {
+        "course": "SCGL1",
+        "las": 10
+    },
+    {
+        "course": "SCGL2",
+        "las": 10
+    },
+    {
+        "course": "SCGL3",
+        "las": 10
+    },
+    {
+        "course": "SCGL4",
+        "las": 10
+    },
+    {
+        "course": "SCGL5",
+        "las": 10
+    },
+    {
+        "course": "SCGL6",
+        "las": 10
+    },
+    {
+        "course": "SCGL7",
+        "las": 10
+    },
+    {
+        "course": "SCGL8",
+        "las": 10
+    },
+    {
+        "course": "SCON1",
+        "las": 10
+    },
+    {
+        "course": "SCON2",
+        "las": 10
+    },
+    {
+        "course": "SCON3",
+        "las": 10
+    },
+    {
+        "course": "SCON4",
+        "las": 10
+    },
+    {
+        "course": "SCON5",
+        "las": 10
+    },
+    {
+        "course": "SCON6",
+        "las": 10
+    },
+    {
+        "course": "SCON7",
+        "las": 10
+    },
+    {
+        "course": "SCON8",
+        "las": 10
+    },
+    {
+        "course": "SCIN1",
+        "las": 10
+    },
+    {
+        "course": "SCIN2",
+        "las": 10
+    },
+    {
+        "course": "SCIN3",
+        "las": 10
+    },
+    {
+        "course": "SCIN4",
+        "las": 10
+    },
+    {
+        "course": "SCIN5",
+        "las": 10
+    },
+    {
+        "course": "SCIN6",
+        "las": 10
+    },
+    {
+        "course": "SCIN7",
+        "las": 10
+    },
+    {
+        "course": "SCIN8",
+        "las": 10
+    },
+    {
+        "course": "SCFT1",
+        "las": 10
+    },
+    {
+        "course": "SCFT2",
+        "las": 10
+    },
+    {
+        "course": "SCFT3",
+        "las": 10
+    },
+    {
+        "course": "SCFT4",
+        "las": 10
+    },
+    {
+        "course": "SCFT5",
+        "las": 10
+    },
+    {
+        "course": "SCFT6",
+        "las": 10
+    },
+    {
+        "course": "SCFT7",
+        "las": 10
+    },
+    {
+        "course": "SCFT8",
+        "las": 10
+    },
+    {
+        "course": "KGSR",
+        "las": 7
+    },
+    {
+        "course": "KGBC",
+        "las": 7
+    },
+    {
+        "course": "KGLM",
+        "las": 24
+    },
+    {
+        "course": "KGPS",
+        "las": 7
     }
 ]
