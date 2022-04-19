@@ -51,7 +51,7 @@ function InsertUsers() {
             user: user
         };
         
-        if (la !== "ILO" && la !== "Lockerdoc") {
+        if (la !== "ILO" && la !== "LD") {
             newUser.asset = "";
         }
 
@@ -61,11 +61,11 @@ function InsertUsers() {
             alert("please insert a wpa name");
         } else if (!course && user) {
             alert("please insert a course name");
-        } else if ((la === "ILO" || la === "Lockerdoc") && !asset) {
+        } else if ((la === "ILO" || la === "LD") && !asset) {
             if (la === "ILO") {
                 alert("please insert ILO asset number(s)");
             } else {
-                alert("please insert Lockerdoc asset number(s)");
+                alert("please insert LD asset number(s)");
             }
         } 
         
@@ -73,7 +73,7 @@ function InsertUsers() {
 
             for (let j = 0; j < globalState.users.length; j++) {
                 
-                if (course === globalState.users[j].course && la === globalState.users[j].la && la !== "ILO" && la !== "Lockerdoc") {
+                if (course === globalState.users[j].course && la === globalState.users[j].la && la !== "ILO" && la !== "LD") {
                     alert(`${globalState.users[j].user} is currently in ${globalState.users[j].course} ${globalState.users[j].la}`);
                     break;
                 } else if (j === globalState.users.length - 1) {
@@ -207,10 +207,10 @@ function InsertUsers() {
                             ILO
                         </option>     
                         <option
-                            name="Lockerdoc"
-                            value="Lockerdoc"
+                            name="LD"
+                            value="LD"
                             >
-                            Lockerdoc
+                            LD
                         </option> 
                     </>                    
                     : null}
@@ -221,7 +221,7 @@ function InsertUsers() {
                     placeholder='Asset#'
                     value={asset}
                     onChange={(e) => setAsset(e.target.value)}
-                    disabled={(la !== "ILO" && la !== "Lockerdoc" && true) || !course}
+                    disabled={(la !== "ILO" && la !== "LD" && true) || !course}
                 />
 
                 <input 
