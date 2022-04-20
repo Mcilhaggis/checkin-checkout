@@ -1,37 +1,5 @@
 [
     {
-        "course": "ARMU1",
-        "las": 8
-    },
-    {
-        "course": "ARMU2",
-        "las": 8
-    },
-    {
-        "course": "ARMU3",
-        "las": 8
-    },
-    {
-        "course": "ARMU4",
-        "las": 8
-    },
-    {
-        "course": "ARMU5",
-        "las": 8
-    },
-    {
-        "course": "ARMU6",
-        "las": 8
-    },
-    {
-        "course": "ARMU7",
-        "las": 8
-    },
-    {
-        "course": "ARMU8",
-        "las": 8
-    },
-    {
         "course": "LAWR1",
         "las": 12
     },
@@ -542,5 +510,249 @@
     {
         "course": "KGPS",
         "las": 7
+    },
+    {
+        "course": "FRCO4",
+        "las": 24
+    },
+    {
+        "course": "FRCO5",
+        "las": 24
+    },
+    {
+        "course": "FRCO6",
+        "las": 24
+    },
+    {
+        "course": "FRCO7",
+        "las": 24
+    },
+    {
+        "course": "FRCO8",
+        "las": 24
+    },
+    {
+        "course": "HPHL1",
+        "las": 8
+    },
+    {
+        "course": "HPHL2",
+        "las": 8
+    },
+    {
+        "course": "HPHL3",
+        "las": 8
+    },
+    {
+        "course": "HPHL4",
+        "las": 8
+    },
+    {
+        "course": "HPHL5",
+        "las": 8
+    },
+    {
+        "course": "HPHL6",
+        "las": 8
+    },
+    {
+        "course": "HPHL7",
+        "las": 8
+    },
+    {
+        "course": "HPHL8",
+        "las": 8
+    },
+    {
+        "course": "HPAL1",
+        "las": 8
+    },
+    {
+        "course": "HPAL2",
+        "las": 8
+    },
+    {
+        "course": "HPAL3",
+        "las": 8
+    },
+    {
+        "course": "HPAL4",
+        "las": 8
+    },
+    {
+        "course": "HPAL5",
+        "las": 8
+    },
+    {
+        "course": "HPAL6",
+        "las": 8
+    },
+    {
+        "course": "HPAL7",
+        "las": 8
+    },
+    {
+        "course": "HPAL8",
+        "las": 8
+    },
+    {
+        "course": "HPMC1",
+        "las": 8
+    },
+    {
+        "course": "HPMC2",
+        "las": 8
+    },
+    {
+        "course": "HPMC3",
+        "las": 8
+    },
+    {
+        "course": "HPMC4",
+        "las": 8
+    },
+    {
+        "course": "HPMC5",
+        "las": 8
+    },
+    {
+        "course": "HPMC6",
+        "las": 8
+    },
+    {
+        "course": "HPMC7",
+        "las": 8
+    },
+    {
+        "course": "HPMC8",
+        "las": 8
+    },
+    {
+        "course": "ARDA1",
+        "las": 8
+    },
+    {
+        "course": "ARDA2",
+        "las": 8
+    },
+    {
+        "course": "ARDA3",
+        "las": 8
+    },
+    {
+        "course": "ARDA4",
+        "las": 8
+    },
+    {
+        "course": "ARDA5",
+        "las": 8
+    },
+    {
+        "course": "ARDA6",
+        "las": 8
+    },
+    {
+        "course": "ARDA7",
+        "las": 8
+    },
+    {
+        "course": "ARDA8",
+        "las": 8
+    },
+    {
+        "course": "ARDR1",
+        "las": 8
+    },
+    {
+        "course": "ARDR2",
+        "las": 8
+    },
+    {
+        "course": "ARDR3",
+        "las": 8
+    },
+    {
+        "course": "ARDR4",
+        "las": 8
+    },
+    {
+        "course": "ARDR5",
+        "las": 8
+    },
+    {
+        "course": "ARDR6",
+        "las": 8
+    },
+    {
+        "course": "ARDR7",
+        "las": 8
+    },
+    {
+        "course": "ARDR8",
+        "las": 8
+    },
+    {
+        "course": "ARVA1",
+        "las": 8
+    },
+    {
+        "course": "ARVA2",
+        "las": 8
+    },
+    {
+        "course": "ARVA3",
+        "las": 8
+    },
+    {
+        "course": "ARVA4",
+        "las": 8
+    },
+    {
+        "course": "ARVA5",
+        "las": 8
+    },
+    {
+        "course": "ARVA6",
+        "las": 8
+    },
+    {
+        "course": "ARVA7",
+        "las": 8
+    },
+    {
+        "course": "ARVA8",
+        "las": 8
+    },
+    {
+        "course": "ARMU1",
+        "las": 8
+    },
+    {
+        "course": "ARMU2",
+        "las": 8
+    },
+    {
+        "course": "ARMU3",
+        "las": 8
+    },
+    {
+        "course": "ARMU4",
+        "las": 8
+    },
+    {
+        "course": "ARMU5",
+        "las": 8
+    },
+    {
+        "course": "ARMU6",
+        "las": 8
+    },
+    {
+        "course": "ARMU7",
+        "las": 8
+    },
+    {
+        "course": "ARMU8",
+        "las": 8
     }
 ]
