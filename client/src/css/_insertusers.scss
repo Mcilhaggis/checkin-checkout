@@ -9,6 +9,11 @@
 form {
     display: inline-flex;
     padding-bottom: 50px;
+
+    @media (max-width: 720px) {
+        display: inline-flex;
+        flex-direction: column;
+    }
 }
 
 input, select {
@@ -30,10 +35,18 @@ input, select {
 
 input {
     height: 50px;
+
+    @media (max-width: 720px) {
+        width: fit-content;
+    }
 }
 
 select {
     height: 60px;
+
+    @media (max-width: 720px) {
+        width: 181px;
+    }
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -63,6 +76,10 @@ select, option {
     font-size: 23px;
     font-family: $source-code-pro;
     font-weight: 600;
+
+    @media (max-width: 720px) {
+        text-align: center;
+    }
 }
 
 .logo {
@@ -83,6 +100,13 @@ select, option {
 
 .divider {
     color: #b8fce1;
+}
+
+.divider:after {
+    @media (max-width: 448px) {
+        content:"\a";
+        white-space: pre;
+    }
 }
 
 .check-out {
