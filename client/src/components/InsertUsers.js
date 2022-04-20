@@ -96,6 +96,12 @@ function InsertUsers() {
                                 globalState.updateState({ validate: true });
                                 databaseContext.getUpdate(validated, (data => null));
                                 databaseContext.saveUpdate(newUser, (data => null));
+
+                                setCourse("");
+                                setLa("LA0");
+                                setAsset("");
+                                setUser("");
+                                setRender(false);
                             })                 
                             .catch(err => console.log(err))
                             break;
@@ -120,18 +126,18 @@ function InsertUsers() {
                         globalState.updateState({ validate: true });
                         databaseContext.getUpdate(validated, (data => null));
                         databaseContext.saveUpdate(newUser, (data => null));
+
+                        setCourse("");
+                        setLa("LA0");
+                        setAsset("");
+                        setUser("");
+                        setRender(false);
                     })                  
                     .catch(err => console.log(err))
                     break;
                 }                   
             } 
         }        
-        
-        setCourse("");
-        setLa("LA0");
-        setAsset("");
-        setUser("");
-        setRender(false);
     };
 
     databaseContext.saveUpdate(null, (data) => {
@@ -178,7 +184,8 @@ function InsertUsers() {
         <div>
             <form
                 onSubmit={handleSubmit}
-                >
+                autoComplete='on'
+            >
                 <input
                     name="course"
                     placeholder="course name"                
@@ -188,6 +195,7 @@ function InsertUsers() {
                 <select 
                     name="la"
                     onChange={(e) => setLa(e.target.value)}
+                    autoComplete='off'
                 >              
                     {numberOfLearningActivites > 0 ? [...Array(numberOfLearningActivites)].map((value, index) => {
                         return (

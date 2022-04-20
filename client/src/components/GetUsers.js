@@ -76,7 +76,7 @@ function GetUsers() {
                         <tr>
                             <td className='data-item-titles'>LA</td>
                             <td className='data-item-titles'>Asset</td>
-                            <td className='data-item-titles'>User</td>
+                            <td className='data-item-titles'>WPA</td>
                             <td className='data-item-titles'>Check-out</td>
                         </tr>
 
