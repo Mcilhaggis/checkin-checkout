@@ -22,7 +22,7 @@ function NewNotification() {
         }
     }, [userControlContext.newUser, newUserMessage])
 
-    toast.configure()
+    toast.configure();
 
     const newNotify = () => {
         if(newUserMessage) {
