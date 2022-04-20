@@ -4,3 +4,9 @@
 // Font Variables
 $source-code-pro: 'Source Code Pro', monospace; 
 $inconsolata: 'Inconsolata', monospace;
+
+// Toastify variables
+:root {
+    --toastify-color-success: #6DFDC3 !important;
+    --toastify-color-info: #74A2AB !important;
+}

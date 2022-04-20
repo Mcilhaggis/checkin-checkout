@@ -1,21 +1,25 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect, useContext, useRef} from 'react';
 import { DatabaseRequest, GlobalState } from '../utils/GlobalContext';
 import CourseInfo from '../data/courseinfo.json';
 import axios from 'axios';
 import Logo from '../images/logo.svg';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import error from '../sounds/error.mp3';
 
 function InsertUsers() {
 
     const globalState = useContext(GlobalState);
     const databaseContext = useContext(DatabaseRequest);
 
+    const audioRef = useRef(null);
+
     const [course, setCourse] = useState("");
     const [la, setLa] = useState("LA0");
     const [asset, setAsset] = useState("");
     const [user, setUser] = useState("");
-
     const [render, setRender] = useState(false);
-
+    const [newErrorMessage, setNewErrorMessage] = useState("");
     const [numberOfLearningActivites, setNumberOfLearningActivities] = useState(0);
 
     useEffect(() => {
@@ -51,21 +55,21 @@ function InsertUsers() {
             user: user
         };
         
-        if (la !== "ILO" && la !== "Lockerdoc") {
+        if (la !== "ILO" && la !== "LD") {
             newUser.asset = "";
         }
 
         if (!course && !user) {
-            alert("you must fill in the required fields");
+            setNewErrorMessage("you must fill in the required fields");
         } else if (course && !user) {
-            alert("please insert a wpa name");
+            setNewErrorMessage("please insert a wpa name");
         } else if (!course && user) {
-            alert("please insert a course name");
-        } else if ((la === "ILO" || la === "Lockerdoc") && !asset) {
+            setNewErrorMessage("please insert a course name");
+        } else if ((la === "ILO" || la === "LD") && !asset) {
             if (la === "ILO") {
-                alert("please insert ILO asset number(s)");
+                setNewErrorMessage("please insert ILO asset number(s)");
             } else {
-                alert("please insert Lockerdoc asset number(s)");
+                setNewErrorMessage("please insert LD asset number(s)");
             }
         } 
         
@@ -73,14 +77,14 @@ function InsertUsers() {
 
             for (let j = 0; j < globalState.users.length; j++) {
                 
-                if (course === globalState.users[j].course && la === globalState.users[j].la && la !== "ILO" && la !== "Lockerdoc") {
-                    alert(`${globalState.users[j].user} is currently in ${globalState.users[j].course} ${globalState.users[j].la}`);
+                if (course === globalState.users[j].course && la === globalState.users[j].la && la !== "ILO" && la !== "LD") {
+                    setNewErrorMessage(`${globalState.users[j].user} is currently in ${globalState.users[j].course} ${globalState.users[j].la}`);
                     break;
                 } else if (j === globalState.users.length - 1) {
 
                     for (let i = 0; i < CourseInfo.length; i++) {
                         if (i === CourseInfo.length -1 && course !== CourseInfo[i].course) {
-                            alert("invalid course name");
+                            setNewErrorMessage("invalid course name");
                         }
 
                         if (course === CourseInfo[i].course) {
@@ -104,7 +108,7 @@ function InsertUsers() {
             for (let i = 0; i < CourseInfo.length; i++) {
                 
                 if (i === CourseInfo.length -1 && course !== CourseInfo[i].course) {
-                    alert("invalid course name");
+                    setNewErrorMessage("invalid course name");
                 }
 
                 if (course === CourseInfo[i].course) {
@@ -136,8 +140,29 @@ function InsertUsers() {
         }
     });
 
+    toast.configure();
+
+    const newNotify = () => {
+        if(newErrorMessage) {
+            toast.error(newErrorMessage, {
+                pauseOnFocusLoss: false,
+                pauseOnHover: false,
+                newestOnTop: true
+            })
+            audioRef.current.load();
+            audioRef.current.play();
+            setNewErrorMessage("");
+        }
+    };
+
   return (
     <div className='insert-users-background'>
+        {newNotify()}
+        <audio      
+            ref={audioRef}        
+        >
+            <source src={error} />
+        </audio>
         <img className='logo' src={Logo} alt='logo' />
         <h1>
             <span className='check-in'>
@@ -207,10 +232,10 @@ function InsertUsers() {
                             ILO
                         </option>     
                         <option
-                            name="Lockerdoc"
-                            value="Lockerdoc"
+                            name="LD"
+                            value="LD"
                             >
-                            Lockerdoc
+                            LD
                         </option> 
                     </>                    
                     : null}
@@ -218,10 +243,10 @@ function InsertUsers() {
                 </select>
                 <input 
                     name="asset" 
-                    placeholder='Asset#'
+                    placeholder='asset#'
                     value={asset}
                     onChange={(e) => setAsset(e.target.value)}
-                    disabled={(la !== "ILO" && la !== "Lockerdoc" && true) || !course}
+                    disabled={(la !== "ILO" && la !== "LD" && true) || !course}
                 />
 
                 <input 

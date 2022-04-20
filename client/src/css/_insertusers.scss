@@ -1,12 +1,19 @@
 @import 'variables';
 
 .insert-users-background {
-    background-color: #f9f9f9;
+    background-image: url('../images/header-bg.png');
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 form {
     display: inline-flex;
     padding-bottom: 50px;
+
+    @media (max-width: 720px) {
+        display: inline-flex;
+        flex-direction: column;
+    }
 }
 
 input, select {
@@ -28,10 +35,18 @@ input, select {
 
 input {
     height: 50px;
+
+    @media (max-width: 720px) {
+        width: fit-content;
+    }
 }
 
 select {
     height: 60px;
+
+    @media (max-width: 720px) {
+        width: 181px;
+    }
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -61,12 +76,16 @@ select, option {
     font-size: 23px;
     font-family: $source-code-pro;
     font-weight: 600;
+
+    @media (max-width: 720px) {
+        text-align: center;
+    }
 }
 
 .logo {
     width: auto;
     height: 100px;
-    padding-top: 10px;
+    padding-top: 20px;
 }
 
 .check-in, .divider, .check-out {
@@ -81,6 +100,13 @@ select, option {
 
 .divider {
     color: #b8fce1;
+}
+
+.divider:after {
+    @media (max-width: 448px) {
+        content:"\a";
+        white-space: pre;
+    }
 }
 
 .check-out {
