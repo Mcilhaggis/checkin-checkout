@@ -4,11 +4,13 @@
 
     .data-item {
         flex: 1 0 21%; 
-        margin: 5px;
+        margin: 10px;
         height: 100%;
         background-color: $twilight-blue;
-        max-width: 461px;
+        max-width: 450px;
         border-radius: 5px;
+        border: 1px solid $gumbo;
+        box-shadow: 4px 5px $gumbo;
 
         .data-item-heading {
             padding-top: 20px;
