@@ -6,28 +6,28 @@
         flex: 1 0 21%; 
         margin: 5px;
         height: 100%;
-        background-color: #ecfcff;
+        background-color: $twilight-blue;
         max-width: 461px;
         border-radius: 5px;
 
         .data-item-heading {
             padding-top: 20px;
             padding-bottom: 20px;
-            color: #787878;
+            color: $boulder;
             font-size: 30px;
             font-family: $inconsolata;
         }
 
         .data-item-titles {
             padding-bottom: 20px;
-            color: #aba67d;
+            color: $hillary;
             font-size: 25px;
             font-family: $inconsolata;            
         }
 
         .data-item-contents {
             font-family: Verdana, Geneva, Tahoma, sans-serif;
-            color: #686868;
+            color: $dove-gray;
 
             .check-out-btn {
                 background-image: url('../images/out_graphic.svg');
@@ -42,7 +42,7 @@
 
                 &:hover, &:focus {
                     background-image: url('../images/out_graphic_rollover.svg');
-                    box-shadow: 0 0 0 2px #74A2AB;
+                    box-shadow: 0 0 0 2px $gumbo;
                     border-radius: 10px;
                     outline: none;
                 }
@@ -51,7 +51,7 @@
 
         .data-item-line {
             max-width: 90%;
-            border-top: 1px solid #aba67d;
+            border-top: 1px solid $hillary;
         }
     }
 }
