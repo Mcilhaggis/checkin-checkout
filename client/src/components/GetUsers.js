@@ -65,7 +65,7 @@ function GetUsers() {
                             <td className='data-item-titles'>Check-out</td>
                         </tr>
 
-                        {globalState.users && globalState.users.sort((a, b) => a.la.localeCompare(b.la)).map((data, index) => {
+                        {globalState.users && globalState.users.sort((a, b) => /^[0-9]/.test(a.la) - /^[0-9]/.test(b.la) || a.la.localeCompare(b.la, undefined, { numeric: true })).map((data, index) => {
                             return (
                                 course === data.course && 
                                 <>
