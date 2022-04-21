@@ -55,7 +55,7 @@ function InsertUsers() {
             user: user
         };
         
-        if (la !== "ILO" && la !== "LD") {
+        if (la !== "ILO" && la !== "LD" && la !== "ATS") {
             newUser.asset = "";
         }
 
@@ -65,11 +65,13 @@ function InsertUsers() {
             setNewErrorMessage("please insert a wpa name");
         } else if (!course && user) {
             setNewErrorMessage("please insert a course name");
-        } else if ((la === "ILO" || la === "LD") && !asset) {
+        } else if ((la === "ILO" || la === "LD" || la === "ATS") && !asset) {
             if (la === "ILO") {
                 setNewErrorMessage("please insert ILO asset number(s)");
-            } else {
+            } else if (la === "LD") {
                 setNewErrorMessage("please insert LD asset number(s)");
+            } else {
+                setNewErrorMessage("please insert ATS asset number(s)");
             }
         } 
         
@@ -77,8 +79,38 @@ function InsertUsers() {
 
             for (let j = 0; j < globalState.users.length; j++) {
                 
-                if (course === globalState.users[j].course && la === globalState.users[j].la && la !== "ILO" && la !== "LD") {
+                if (course === globalState.users[j].course && la === globalState.users[j].la && la !== "ILO" && la !== "LD" && la !== "ATS") {
                     setNewErrorMessage(`${globalState.users[j].user} is currently in ${globalState.users[j].course} ${globalState.users[j].la}`);
+                    break;
+                } else if (course === globalState.users[j].course && la === "All LAs" && globalState.users[j].la.includes("LA")) {
+                    setNewErrorMessage(`WPA(s) are currently in ${globalState.users[j].course} LAs`)
+                    break;
+                } else if (course === globalState.users[j].course && la.includes("LA") && globalState.users[j].la.includes("All LAs")) {
+                    setNewErrorMessage(`${globalState.users[j].user} is currently in all ${globalState.users[j].course} LAs`)
+                    break;
+                } else if (course === globalState.users[j].course && la === "All TGs" && globalState.users[j].la.includes("TG")) {
+                    setNewErrorMessage(`WPA(s) are currently in ${globalState.users[j].course} TGs`)
+                    break;
+                } else if (course === globalState.users[j].course && la.includes("TG") && globalState.users[j].la.includes("All TGs")) {
+                    setNewErrorMessage(`${globalState.users[j].user} is currently in all ${globalState.users[j].course} TGs`)
+                    break;
+                } else if (course === globalState.users[j].course && la === "All ILOs" && globalState.users[j].la.includes("ILO")) {
+                    setNewErrorMessage(`WPA(s) are currently in ${globalState.users[j].course} ILOs`)
+                    break;
+                } else if (course === globalState.users[j].course && la.includes("ILO") && globalState.users[j].la.includes("All ILOs")) {
+                    setNewErrorMessage(`${globalState.users[j].user} is currently in all ${globalState.users[j].course} ILOs`)
+                    break;
+                } else if (course === globalState.users[j].course && la === "All LDs" && globalState.users[j].la.includes("LD")) {
+                    setNewErrorMessage(`WPA(s) are currently in ${globalState.users[j].course} LDs`)
+                    break;
+                } else if (course === globalState.users[j].course && la.includes("LD") && globalState.users[j].la.includes("All LDs")) {
+                    setNewErrorMessage(`${globalState.users[j].user} is currently in all ${globalState.users[j].course} LDs`)
+                    break;
+                } else if (course === globalState.users[j].course && la === "All ATSs" && globalState.users[j].la.includes("ATS")) {
+                    setNewErrorMessage(`WPA(s) are currently in ${globalState.users[j].course} ATSs`)
+                    break;
+                } else if (course === globalState.users[j].course && la.includes("ATS") && globalState.users[j].la.includes("All ATSs")) {
+                    setNewErrorMessage(`${globalState.users[j].user} is currently in all ${globalState.users[j].course} ATSs`)
                     break;
                 } else if (j === globalState.users.length - 1) {
 
@@ -196,29 +228,7 @@ function InsertUsers() {
                     name="la"
                     onChange={(e) => setLa(e.target.value)}
                     autoComplete='off'
-                >              
-                    {numberOfLearningActivites > 0 ? [...Array(numberOfLearningActivites)].map((value, index) => {
-                        return (
-                            <option 
-                                key={index} 
-                                name="la"
-                                value={`LA${index + 1}`}
-                            >
-                                {`LA${index + 1}`}
-                            </option>
-                        )
-                    }):null}     
-                    {numberOfLearningActivites > 0 ? [...Array(numberOfLearningActivites)].map((value, index) => {
-                        return (
-                            <option 
-                                key={index} 
-                                name="tg"
-                                value={`TG${index + 1}`}
-                            >
-                                {`TG${index + 1}`}
-                            </option>
-                        )
-                    }): null}
+                >        
 
                     {!render ? 
                     <>
@@ -231,6 +241,30 @@ function InsertUsers() {
                     </>                    
                     : null}
 
+                    {numberOfLearningActivites > 0 ? [...Array(numberOfLearningActivites)].map((value, index) => {
+                        return (
+                            <option 
+                                key={index} 
+                                name="la"
+                                value={`LA${index + 1}`}
+                            >
+                                {`LA${index + 1}`}
+                            </option>
+                        )
+                    }):null}     
+                    
+                    {numberOfLearningActivites > 0 ? [...Array(numberOfLearningActivites)].map((value, index) => {
+                        return (
+                            <option 
+                                key={index} 
+                                name="tg"
+                                value={`TG${index + 1}`}
+                            >
+                                {`TG${index + 1}`}
+                            </option>
+                        )
+                    }): null}
+
                     {render ? 
                     <>
                         <option
@@ -238,13 +272,56 @@ function InsertUsers() {
                             value="ILO"
                             >
                             ILO
-                        </option>     
+                        </option>      
+
                         <option
                             name="LD"
                             value="LD"
                             >
                             LD
+                        </option>  
+
+                        <option
+                            name="ATS"
+                            value="ATS"
+                            >
+                            ATS
                         </option> 
+
+                        <option
+                            name="All LAs"
+                            value="All LAs"
+                            >
+                            All LAs
+                        </option> 
+
+                        <option
+                            name="All TGs"
+                            value="All TGs"
+                            >
+                            All TGs
+                        </option>  
+
+                        <option
+                            name="All ILOs"
+                            value="All ILOs"
+                            >
+                            All ILOs
+                        </option>  
+
+                        <option
+                            name="All LDs"
+                            value="All LDs"
+                            >
+                            All LDs
+                        </option>  
+
+                        <option
+                            name="All ATSs"
+                            value="All ATSs"
+                            >
+                            All ATSs
+                        </option>  
                     </>                    
                     : null}
    
@@ -254,7 +331,7 @@ function InsertUsers() {
                     placeholder='asset#'
                     value={asset}
                     onChange={(e) => setAsset(e.target.value)}
-                    disabled={(la !== "ILO" && la !== "LD" && true) || !course}
+                    disabled={(la !== "ILO" && la !== "LD" && la !== "ATS" && true) || !course}
                 />
 
                 <input 
