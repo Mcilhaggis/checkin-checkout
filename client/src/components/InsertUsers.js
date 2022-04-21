@@ -55,7 +55,7 @@ function InsertUsers() {
             user: user
         };
         
-        if (la !== "ILO" && la !== "LD" && la !== "ATS") {
+        if (la !== "ILO" && la !== "LD" && la !== "AT") {
             newUser.asset = "";
         }
 
@@ -65,13 +65,13 @@ function InsertUsers() {
             setNewErrorMessage("please insert a wpa name");
         } else if (!course && user) {
             setNewErrorMessage("please insert a course name");
-        } else if ((la === "ILO" || la === "LD" || la === "ATS") && !asset) {
+        } else if ((la === "ILO" || la === "LD" || la === "AT") && !asset) {
             if (la === "ILO") {
                 setNewErrorMessage("please insert ILO asset number(s)");
             } else if (la === "LD") {
                 setNewErrorMessage("please insert LD asset number(s)");
             } else {
-                setNewErrorMessage("please insert ATS asset number(s)");
+                setNewErrorMessage("please insert AT asset number(s)");
             }
         } 
         
@@ -79,7 +79,7 @@ function InsertUsers() {
 
             for (let j = 0; j < globalState.users.length; j++) {
                 
-                if (course === globalState.users[j].course && la === globalState.users[j].la && la !== "ILO" && la !== "LD" && la !== "ATS") {
+                if (course === globalState.users[j].course && la === globalState.users[j].la && la !== "ILO" && la !== "LD" && la !== "AT") {
                     setNewErrorMessage(`${globalState.users[j].user} is currently in ${globalState.users[j].course} ${globalState.users[j].la}`);
                     break;
                 } else if (course === globalState.users[j].course && la === "All LAs" && globalState.users[j].la.includes("LA")) {
@@ -106,11 +106,11 @@ function InsertUsers() {
                 } else if (course === globalState.users[j].course && la.includes("LD") && globalState.users[j].la.includes("All LDs")) {
                     setNewErrorMessage(`${globalState.users[j].user} is currently in all ${globalState.users[j].course} LDs`)
                     break;
-                } else if (course === globalState.users[j].course && la === "All ATSs" && globalState.users[j].la.includes("ATS")) {
-                    setNewErrorMessage(`WPA(s) are currently in ${globalState.users[j].course} ATSs`)
+                } else if (course === globalState.users[j].course && la === "All ATs" && globalState.users[j].la.includes("AT")) {
+                    setNewErrorMessage(`WPA(s) are currently in ${globalState.users[j].course} ATs`)
                     break;
-                } else if (course === globalState.users[j].course && la.includes("ATS") && globalState.users[j].la.includes("All ATSs")) {
-                    setNewErrorMessage(`${globalState.users[j].user} is currently in all ${globalState.users[j].course} ATSs`)
+                } else if (course === globalState.users[j].course && la.includes("AT") && globalState.users[j].la.includes("All ATs")) {
+                    setNewErrorMessage(`${globalState.users[j].user} is currently in all ${globalState.users[j].course} ATs`)
                     break;
                 } else if (j === globalState.users.length - 1) {
 
@@ -282,10 +282,10 @@ function InsertUsers() {
                         </option>  
 
                         <option
-                            name="ATS"
-                            value="ATS"
+                            name="AT"
+                            value="AT"
                             >
-                            ATS
+                            AT
                         </option> 
 
                         <option
@@ -317,10 +317,10 @@ function InsertUsers() {
                         </option>  
 
                         <option
-                            name="All ATSs"
-                            value="All ATSs"
+                            name="All ATs"
+                            value="All ATs"
                             >
-                            All ATSs
+                            All ATs
                         </option>  
                     </>                    
                     : null}
@@ -331,7 +331,7 @@ function InsertUsers() {
                     placeholder='asset#'
                     value={asset}
                     onChange={(e) => setAsset(e.target.value)}
-                    disabled={(la !== "ILO" && la !== "LD" && la !== "ATS" && true) || !course}
+                    disabled={(la !== "ILO" && la !== "LD" && la !== "AT" && true) || !course}
                 />
 
                 <input 
