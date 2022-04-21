@@ -13,6 +13,8 @@ export const GlobalContext = (props) => {
         socketValidate: false,
         newUser: {},
         oldUser: {},
+        showModal: false,
+        modalData: {},
 
         updateState: (stateUpdates) => {
             setStateInfo(currentStateInfo => ({ ...currentStateInfo, ...stateUpdates}));

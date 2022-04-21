@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { GlobalState, DatabaseRequest } from '../utils/GlobalContext';
-import axios from 'axios';
+import DeleteConfirmation from './DeleteConfirmation';
 
 function GetUsers() {
 
@@ -29,31 +29,16 @@ function GetUsers() {
         }
     }, [globalState.users]);
 
-    const handleDelete = (id, data) => {
-        let validated = false;
-        let deleted = data;
-        
-        axios.delete(`/delete/${id}`)
-        .then((res) => {
-            validated = true;
-            globalState.updateState({ validate: true });
-            databaseContext.getUpdate(validated, (data => null));            
-            databaseContext.deleteUpdate(deleted, (data => null))
-        })                
-        .catch(err => console.log(err))
-    };
-
     databaseContext.getUpdate(null, (data) => {
         if (data === true) {
             globalState.updateState({ socketValidate: data });
         }
     });
 
-    databaseContext.deleteUpdate(null, (data) => {
-        if (data._id) {
-            globalState.updateState({ oldUser: data });
-        }
-    });
+    const handleModal = (data) => {
+        globalState.updateState({ showModal: true, modalData: data })
+        document.body.classList.add('active-modal')
+    };
 
   return (
     <div className='data-container'> 
@@ -95,7 +80,7 @@ function GetUsers() {
                                             <i 
                                                 className='check-out-btn' 
                                                 title='check-out'
-                                                onClick={() => handleDelete(data._id, data)}
+                                                onClick={() => handleModal(data)}
                                                 tabIndex='0'
                                             />
                                         </td>
@@ -111,10 +96,10 @@ function GetUsers() {
                             )
                         })}
                     </tbody>
-
                 </table>
             </div>            
         )}
+        {globalState.showModal && <DeleteConfirmation/>}
     </div>
   )
 }
