@@ -76,6 +76,8 @@ select, option {
     font-family: $source-code-pro;
     font-weight: 600;
     cursor: pointer;
+    width: 181px;
+    text-align: center;
 
     @media (max-width: 720px) {
         text-align: center;

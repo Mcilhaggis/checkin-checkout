@@ -41,7 +41,7 @@ function InsertUsers() {
             setRender(false);
         } else {
             setRender(true);
-            setLa("All LA's");
+            setLa("ILO");
         }
     };
 
@@ -222,17 +222,6 @@ function InsertUsers() {
                             </option>
                         )
                     }):null}     
-
-                    {render ? 
-                    <>
-                        <option
-                            name="All LA's"
-                            value="All LA's"
-                            >
-                            All LA's
-                        </option>     
-                    </>                    
-                    : null}
                     
                     {numberOfLearningActivites > 0 ? [...Array(numberOfLearningActivites)].map((value, index) => {
                         return (
@@ -249,43 +238,18 @@ function InsertUsers() {
                     {render ? 
                     <>
                         <option
-                            name="All TG's"
-                            value="All TG's"
-                            >
-                            All TG's
-                        </option>     
-                    </>                    
-                    : null}
-
-                    {render ? 
-                    <>
-                        <option
                             name="ILO"
                             value="ILO"
                             >
                             ILO
-                        </option>    
-
-                        <option
-                            name="All ILO's"
-                            value="All ILO's"
-                            >
-                            All ILO's
-                        </option>    
+                        </option>      
 
                         <option
                             name="LD"
                             value="LD"
                             >
                             LD
-                        </option> 
-
-                        <option
-                            name="All LD's"
-                            value="All LD's"
-                            >
-                            All LD's
-                        </option>   
+                        </option>  
 
                         <option
                             name="ATS"
@@ -295,10 +259,38 @@ function InsertUsers() {
                         </option> 
 
                         <option
-                            name="All ATS's"
-                            value="All ATS's"
+                            name="All LAs"
+                            value="All LAs"
                             >
-                            All ATS's
+                            All LAs
+                        </option> 
+
+                        <option
+                            name="All TGs"
+                            value="All TGs"
+                            >
+                            All TGs
+                        </option>  
+
+                        <option
+                            name="All ILOs"
+                            value="All ILOs"
+                            >
+                            All ILOs
+                        </option>  
+
+                        <option
+                            name="All LDs"
+                            value="All LDs"
+                            >
+                            All LDs
+                        </option>  
+
+                        <option
+                            name="All ATSs"
+                            value="All ATSs"
+                            >
+                            All ATSs
                         </option>  
                     </>                    
                     : null}
