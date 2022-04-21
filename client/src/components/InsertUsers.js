@@ -41,7 +41,7 @@ function InsertUsers() {
             setRender(false);
         } else {
             setRender(true);
-            setLa("ILO");
+            setLa("All LA's");
         }
     };
 
@@ -55,7 +55,7 @@ function InsertUsers() {
             user: user
         };
         
-        if (la !== "ILO" && la !== "LD") {
+        if (la !== "ILO" && la !== "LD" && la !== "ATS") {
             newUser.asset = "";
         }
 
@@ -65,11 +65,13 @@ function InsertUsers() {
             setNewErrorMessage("please insert a wpa name");
         } else if (!course && user) {
             setNewErrorMessage("please insert a course name");
-        } else if ((la === "ILO" || la === "LD") && !asset) {
+        } else if ((la === "ILO" || la === "LD" || la === "ATS") && !asset) {
             if (la === "ILO") {
                 setNewErrorMessage("please insert ILO asset number(s)");
-            } else {
+            } else if (la === "LD") {
                 setNewErrorMessage("please insert LD asset number(s)");
+            } else {
+                setNewErrorMessage("please insert ATS asset number(s)");
             }
         } 
         
@@ -77,7 +79,7 @@ function InsertUsers() {
 
             for (let j = 0; j < globalState.users.length; j++) {
                 
-                if (course === globalState.users[j].course && la === globalState.users[j].la && la !== "ILO" && la !== "LD") {
+                if (course === globalState.users[j].course && la === globalState.users[j].la && la !== "ILO" && la !== "LD" && la !== "ATS") {
                     setNewErrorMessage(`${globalState.users[j].user} is currently in ${globalState.users[j].course} ${globalState.users[j].la}`);
                     break;
                 } else if (j === globalState.users.length - 1) {
@@ -196,29 +198,7 @@ function InsertUsers() {
                     name="la"
                     onChange={(e) => setLa(e.target.value)}
                     autoComplete='off'
-                >              
-                    {numberOfLearningActivites > 0 ? [...Array(numberOfLearningActivites)].map((value, index) => {
-                        return (
-                            <option 
-                                key={index} 
-                                name="la"
-                                value={`LA${index + 1}`}
-                            >
-                                {`LA${index + 1}`}
-                            </option>
-                        )
-                    }):null}     
-                    {numberOfLearningActivites > 0 ? [...Array(numberOfLearningActivites)].map((value, index) => {
-                        return (
-                            <option 
-                                key={index} 
-                                name="tg"
-                                value={`TG${index + 1}`}
-                            >
-                                {`TG${index + 1}`}
-                            </option>
-                        )
-                    }): null}
+                >        
 
                     {!render ? 
                     <>
@@ -231,6 +211,52 @@ function InsertUsers() {
                     </>                    
                     : null}
 
+                    {numberOfLearningActivites > 0 ? [...Array(numberOfLearningActivites)].map((value, index) => {
+                        return (
+                            <option 
+                                key={index} 
+                                name="la"
+                                value={`LA${index + 1}`}
+                            >
+                                {`LA${index + 1}`}
+                            </option>
+                        )
+                    }):null}     
+
+                    {render ? 
+                    <>
+                        <option
+                            name="All LA's"
+                            value="All LA's"
+                            >
+                            All LA's
+                        </option>     
+                    </>                    
+                    : null}
+                    
+                    {numberOfLearningActivites > 0 ? [...Array(numberOfLearningActivites)].map((value, index) => {
+                        return (
+                            <option 
+                                key={index} 
+                                name="tg"
+                                value={`TG${index + 1}`}
+                            >
+                                {`TG${index + 1}`}
+                            </option>
+                        )
+                    }): null}
+
+                    {render ? 
+                    <>
+                        <option
+                            name="All TG's"
+                            value="All TG's"
+                            >
+                            All TG's
+                        </option>     
+                    </>                    
+                    : null}
+
                     {render ? 
                     <>
                         <option
@@ -238,13 +264,42 @@ function InsertUsers() {
                             value="ILO"
                             >
                             ILO
-                        </option>     
+                        </option>    
+
+                        <option
+                            name="All ILO's"
+                            value="All ILO's"
+                            >
+                            All ILO's
+                        </option>    
+
                         <option
                             name="LD"
                             value="LD"
                             >
                             LD
                         </option> 
+
+                        <option
+                            name="All LD's"
+                            value="All LD's"
+                            >
+                            All LD's
+                        </option>   
+
+                        <option
+                            name="ATS"
+                            value="ATS"
+                            >
+                            ATS
+                        </option> 
+
+                        <option
+                            name="All ATS's"
+                            value="All ATS's"
+                            >
+                            All ATS's
+                        </option>  
                     </>                    
                     : null}
    
@@ -254,7 +309,7 @@ function InsertUsers() {
                     placeholder='asset#'
                     value={asset}
                     onChange={(e) => setAsset(e.target.value)}
-                    disabled={(la !== "ILO" && la !== "LD" && true) || !course}
+                    disabled={(la !== "ILO" && la !== "LD" && la !== "ATS" && true) || !course}
                 />
 
                 <input 
