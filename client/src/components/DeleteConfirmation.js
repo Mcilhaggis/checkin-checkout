@@ -42,8 +42,17 @@ function DeleteConfirmation() {
         />
         <div className='modal-content'>
             {globalState.modalData.asset ? 
-                <p>{`${globalState.modalData.user}, please confirm you want to check-out: ${globalState.modalData.course} ${globalState.modalData.la} Asset: ${globalState.modalData.asset}.`}</p> :
-                <p>{`${globalState.modalData.user}, please confirm you want to check-out: ${globalState.modalData.course} ${globalState.modalData.la}.`}</p>
+                <div>
+                    <p>{`${globalState.modalData.user}, please confirm you want to check-out:`}</p>
+                    <p>{`Course: ${globalState.modalData.course}`}</p>
+                    <p>{`LA: ${globalState.modalData.la}`}</p>
+                    <p>{`Asset: ${globalState.modalData.asset}`}</p>
+                </div> :
+                <div>
+                    <p>{`${globalState.modalData.user}, please confirm you want to check-out:`}</p>
+                    <p>{`Course: ${globalState.modalData.course}`}</p>
+                    <p>{`LA: ${globalState.modalData.la}`}</p>
+                </div>
             } 
             <button onClick={() => handleDelete(globalState.modalData)}>CONFIRM</button>           
             <button onClick={() => handleModal()}>CANCEL</button>           
