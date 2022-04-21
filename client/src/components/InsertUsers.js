@@ -82,6 +82,36 @@ function InsertUsers() {
                 if (course === globalState.users[j].course && la === globalState.users[j].la && la !== "ILO" && la !== "LD" && la !== "ATS") {
                     setNewErrorMessage(`${globalState.users[j].user} is currently in ${globalState.users[j].course} ${globalState.users[j].la}`);
                     break;
+                } else if (course === globalState.users[j].course && la === "All LAs" && globalState.users[j].la.includes("LA")) {
+                    setNewErrorMessage(`WPA(s) are currently in ${globalState.users[j].course} LAs`)
+                    break;
+                } else if (course === globalState.users[j].course && la.includes("LA") && globalState.users[j].la.includes("All LAs")) {
+                    setNewErrorMessage(`${globalState.users[j].user} is currently in all ${globalState.users[j].course} LAs`)
+                    break;
+                } else if (course === globalState.users[j].course && la === "All TGs" && globalState.users[j].la.includes("TG")) {
+                    setNewErrorMessage(`WPA(s) are currently in ${globalState.users[j].course} TGs`)
+                    break;
+                } else if (course === globalState.users[j].course && la.includes("TG") && globalState.users[j].la.includes("All TGs")) {
+                    setNewErrorMessage(`${globalState.users[j].user} is currently in all ${globalState.users[j].course} TGs`)
+                    break;
+                } else if (course === globalState.users[j].course && la === "All ILOs" && globalState.users[j].la.includes("ILO")) {
+                    setNewErrorMessage(`WPA(s) are currently in ${globalState.users[j].course} ILOs`)
+                    break;
+                } else if (course === globalState.users[j].course && la.includes("ILO") && globalState.users[j].la.includes("All ILOs")) {
+                    setNewErrorMessage(`${globalState.users[j].user} is currently in all ${globalState.users[j].course} ILOs`)
+                    break;
+                } else if (course === globalState.users[j].course && la === "All LDs" && globalState.users[j].la.includes("LD")) {
+                    setNewErrorMessage(`WPA(s) are currently in ${globalState.users[j].course} LDs`)
+                    break;
+                } else if (course === globalState.users[j].course && la.includes("LD") && globalState.users[j].la.includes("All LDs")) {
+                    setNewErrorMessage(`${globalState.users[j].user} is currently in all ${globalState.users[j].course} LDs`)
+                    break;
+                } else if (course === globalState.users[j].course && la === "All ATSs" && globalState.users[j].la.includes("ATS")) {
+                    setNewErrorMessage(`WPA(s) are currently in ${globalState.users[j].course} ATSs`)
+                    break;
+                } else if (course === globalState.users[j].course && la.includes("ATS") && globalState.users[j].la.includes("All ATSs")) {
+                    setNewErrorMessage(`${globalState.users[j].user} is currently in all ${globalState.users[j].course} ATSs`)
+                    break;
                 } else if (j === globalState.users.length - 1) {
 
                     for (let i = 0; i < CourseInfo.length; i++) {
