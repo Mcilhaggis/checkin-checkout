@@ -35,9 +35,11 @@ function GetUsers() {
         }
     });
 
-    const handleModal = (data) => {
-        globalState.updateState({ showModal: true, modalData: data })
-        document.body.classList.add('active-modal')
+    const handleModal = (e, data) => {
+        if (e.key === 'Enter' || e.code === 'Space' || e.type === 'click') {
+            globalState.updateState({ showModal: true, modalData: data })
+            document.body.classList.add('active-modal')
+        }
     };
 
   return (
@@ -80,7 +82,8 @@ function GetUsers() {
                                             <i 
                                                 className='check-out-btn' 
                                                 title='check-out'
-                                                onClick={() => handleModal(data)}
+                                                onClick={(e) => handleModal(e, data)}
+                                                onKeyDown={(e) => handleModal(e, data)}
                                                 tabIndex={globalState.showModal ? '-1' : '0'}
                                             />
                                         </td>
