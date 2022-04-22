@@ -35,13 +35,24 @@ body.active-modal {
             display: inline-block;
             background-clip: padding-box;
             width: 150px;
-            height: 150px;
+            height: 60px;
             cursor: pointer;
+
+            @media (max-width: 448px) {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
         }
 
         .cancel-btn {
             background-image: url('../images/cancel_graphic.svg');
             margin-right: 15px;
+
+            @media (max-width: 448px) {
+                margin-right: auto;
+                margin-bottom: 5px;
+            }
 
             &:hover, &:focus {
                 background-image: url('../images/cancel_graphic_rollover.svg');
