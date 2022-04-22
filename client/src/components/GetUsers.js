@@ -81,7 +81,7 @@ function GetUsers() {
                                                 className='check-out-btn' 
                                                 title='check-out'
                                                 onClick={() => handleModal(data)}
-                                                tabIndex='0'
+                                                tabIndex={globalState.showModal ? '-1' : '0'}
                                             />
                                         </td>
                                     </tr>

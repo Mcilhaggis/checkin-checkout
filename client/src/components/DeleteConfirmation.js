@@ -54,8 +54,18 @@ function DeleteConfirmation() {
                     <p>{`LA: ${globalState.modalData.la}`}</p>
                 </div>
             } 
-            <button onClick={() => handleDelete(globalState.modalData)}>CONFIRM</button>           
-            <button onClick={() => handleModal()}>CANCEL</button>           
+            <i 
+                className='cancel-btn' 
+                title='cancel'
+                onClick={() => handleModal()}
+                tabIndex='0'
+            />
+            <i 
+                className='confirm-btn' 
+                title='confirm'
+                onClick={() => handleDelete(globalState.modalData)}
+                tabIndex='0'
+            />
         </div>
     </div>
   )

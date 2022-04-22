@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#B8FCE1;}
+	.st1{fill:#57C99A;}
+	.st2{fill:#367D60;}
+	.st3{fill:#3AA0B0;}
+</style>
+<g>
+	<path class="st0" d="M0,819.6c0,4.5,0.2,9,0.6,13.5L0,194V819.6z"/>
+	<path class="st0" d="M999.4,166.9L1000,806V180.4C1000,175.8,999.8,171.3,999.4,166.9z"/>
+	<path class="st1" d="M601,795l205,205h13.6c99.6,0,180.4-80.8,180.4-180.4V806L795,601L601,795z"/>
+	<path class="st1" d="M399,205L194,0h-13.6C80.8,0,0,80.8,0,180.4V194l205,205L399,205z"/>
+	<polygon class="st2" points="403,597 597,403 399,205 205,399 0,194 0.6,833.1 0.7,1000 180.4,1000 806,1000 601,795 	"/>
+	<polygon class="st3" points="999.3,0 819.6,0 194,0 399,205 597,403 403,597 601,795 795,601 1000,806 999.4,166.9 	"/>
+</g>
+</svg>
