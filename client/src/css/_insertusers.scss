@@ -17,7 +17,7 @@ form {
 
 input, select {
     margin-right: 10px;
-    background-color: $aero-blue;
+    background-color: $emerald;
     background-clip: padding-box;
     border: 4px solid transparent;
 
@@ -26,7 +26,7 @@ input, select {
     }
 
     &:hover:enabled, &:focus:enabled {
-        box-shadow: 0 0 0 2px $aquamarine;
+        box-shadow: 0 0 0 2px $amazon;
         border-radius: 10px;
         outline: none;
     }
@@ -49,7 +49,7 @@ select {
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: $hippie-blue;
+    color: $chathams-blue;
     opacity: 1; /* Firefox */
     font-size: 23px;
     font-family: $source-code-pro;
@@ -57,21 +57,21 @@ select {
 }
     
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: $hippie-blue;
+    color: $chathams-blue;
     font-size: 23px;
     font-family: $source-code-pro;
     text-align: center;
 }
     
 ::-ms-input-placeholder { /* Microsoft Edge */
-    color: $hippie-blue;
+    color: $chathams-blue;
     font-size: 23px;
     font-family: $source-code-pro;
     text-align: center;
 }
 
 select, option {
-    color: $hippie-blue;
+    color: $chathams-blue;
     font-size: 23px;
     font-family: $source-code-pro;
     font-weight: 600;
@@ -97,11 +97,11 @@ select, option {
 }
 
 .check-in {
-    color: $aquamarine;
+    color: $amazon;
 }
 
 .divider {
-    color: $aero-blue;
+    color: $emerald;
 }
 
 .divider:after {
@@ -112,7 +112,7 @@ select, option {
 }
 
 .check-out {
-    color: $gumbo;
+    color: $boston-blue;
 }
 
 .parent-check-in-btn {
@@ -124,7 +124,7 @@ select, option {
 
 .check-in-btn {
     border-radius: 5px 5px 5px 0px;
-    background-image: url('../images/in_graphic.svg');
+    background-image: url('../images/in_graphic_v2.svg');
     background-repeat: no-repeat;
     background-position: center;
     display: inline-block;
@@ -135,8 +135,8 @@ select, option {
     cursor: pointer;
 
     &:hover, &:focus {
-        background-image: url('../images/in_graphic_rollover.svg');
-        box-shadow: 0 0 0 2px $aquamarine;
+        background-image: url('../images/in_graphic_rollover_v2.svg');
+        box-shadow: 0 0 0 2px $amazon;
         border-radius: 10px;
         outline: none;
     }

@@ -7,25 +7,29 @@ function DeleteConfirmation() {
     const globalState = useContext(GlobalState);
     const databaseContext = useContext(DatabaseRequest);  
 
-    const handleModal = () => {
-        globalState.updateState({ showModal: false, modalData: {} });
-        document.body.classList.remove('active-modal');
-    };
-
-    const handleDelete = (data) => {
-        let validated = false;
-        let deleted = data;
-        
-        axios.delete(`/delete/${data._id}`)
-        .then((res) => {
-            validated = true;
-            globalState.updateState({ validate: true });
-            databaseContext.getUpdate(validated, (data => null));            
-            databaseContext.deleteUpdate(deleted, (data => null))
+    const handleModal = (e) => {
+        if (e.key === 'Enter' || e.code === 'Space' || e.type === 'click') {
             globalState.updateState({ showModal: false, modalData: {} });
             document.body.classList.remove('active-modal');
-        })                
-        .catch(err => console.log(err))
+        }
+    };
+
+    const handleDelete = (e, data) => {
+        if (e.key === 'Enter' || e.code === 'Space' || e.type === 'click') {
+            let validated = false;
+            let deleted = data;
+            
+            axios.delete(`/delete/${data._id}`)
+            .then((res) => {
+                validated = true;
+                globalState.updateState({ validate: true });
+                databaseContext.getUpdate(validated, (data => null));            
+                databaseContext.deleteUpdate(deleted, (data => null))
+                globalState.updateState({ showModal: false, modalData: {} });
+                document.body.classList.remove('active-modal');
+            })                
+            .catch(err => console.log(err))
+        }
     };
 
     databaseContext.deleteUpdate(null, (data) => {
@@ -54,8 +58,20 @@ function DeleteConfirmation() {
                     <p>{`LA: ${globalState.modalData.la}`}</p>
                 </div>
             } 
-            <button onClick={() => handleDelete(globalState.modalData)}>CONFIRM</button>           
-            <button onClick={() => handleModal()}>CANCEL</button>           
+            <i 
+                className='cancel-btn' 
+                title='cancel'
+                onClick={(e) => handleModal(e)}
+                onKeyDown={(e) => handleModal(e)}
+                tabIndex='0'
+            />
+            <i 
+                className='confirm-btn' 
+                title='confirm'
+                onClick={(e) => handleDelete(e, globalState.modalData)}
+                onKeyDown={(e) => handleDelete(e, globalState.modalData)}
+                tabIndex='0'
+            />
         </div>
     </div>
   )

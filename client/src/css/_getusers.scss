@@ -18,8 +18,8 @@
         height: fit-content;
         background-color: $twilight-blue;
         border-radius: 5px;
-        border: 1px solid $gumbo;
-        box-shadow: 4px 5px $gumbo;
+        border: 1px solid $boston-blue;
+        box-shadow: 4px 5px $boston-blue;
 
         .data-item-heading {
             padding-top: 20px;
@@ -41,7 +41,7 @@
             color: $dove-gray;
 
             .check-out-btn {
-                background-image: url('../images/out_graphic.svg');
+                background-image: url('../images/out_graphic_v2.svg');
                 background-repeat: no-repeat;
                 background-position: center;
                 display: inline-block;
@@ -52,8 +52,8 @@
                 cursor: pointer;
 
                 &:hover, &:focus {
-                    background-image: url('../images/out_graphic_rollover.svg');
-                    box-shadow: 0 0 0 2px $gumbo;
+                    background-image: url('../images/out_graphic_rollover_v2.svg');
+                    box-shadow: 0 0 0 2px $boston-blue;
                     border-radius: 10px;
                     outline: none;
                 }

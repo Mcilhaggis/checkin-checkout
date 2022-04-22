@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext, useRef} from 'react';
 import { DatabaseRequest, GlobalState } from '../utils/GlobalContext';
 import CourseInfo from '../data/courseinfo.json';
 import axios from 'axios';
-import Logo from '../images/logo.svg';
+import Logo from '../images/logo_v2.svg';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import error from '../sounds/error.mp3';
@@ -73,9 +73,7 @@ function InsertUsers() {
             } else {
                 setNewErrorMessage("please insert AT asset number(s)");
             }
-        } 
-        
-        else if (globalState.users.length > 0) {
+        } else if (globalState.users.length > 0) {
 
             for (let j = 0; j < globalState.users.length; j++) {
                 
@@ -223,11 +221,13 @@ function InsertUsers() {
                     placeholder="course name"                
                     value={course}
                     onChange={(e) => handleCourseAndAssets(e)}
+                    tabIndex={globalState.showModal ? '-1' : '0'}
                 />
                 <select 
                     name="la"
                     onChange={(e) => setLa(e.target.value)}
                     autoComplete='off'
+                    tabIndex={globalState.showModal ? '-1' : '0'}
                 >        
 
                     {!render ? 
@@ -339,6 +339,7 @@ function InsertUsers() {
                     placeholder='wpa name'
                     value={user}
                     onChange={(e) => setUser(e.target.value)}
+                    tabIndex={globalState.showModal ? '-1' : '0'}
                 />
 
                 <button                    
@@ -350,7 +351,7 @@ function InsertUsers() {
                     <span 
                         className='check-in-btn'
                         title='check-in'
-                        tabIndex='0'
+                        tabIndex={globalState.showModal ? '-1' : '0'}
                     />
                 </button>
 

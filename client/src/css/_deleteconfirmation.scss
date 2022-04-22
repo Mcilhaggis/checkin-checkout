@@ -26,5 +26,47 @@ body.active-modal {
         border-radius: 3px;
         max-width: 600px;
         min-width: 300px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        background-color: $twilight-blue;
+
+        .cancel-btn, .confirm-btn {
+            background-repeat: no-repeat;
+            background-position: center;
+            display: inline-block;
+            background-clip: padding-box;
+            width: 150px;
+            height: 60px;
+            cursor: pointer;
+
+            @media (max-width: 448px) {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        .cancel-btn {
+            background-image: url('../images/cancel_graphic.svg');
+            margin-right: 15px;
+
+            @media (max-width: 448px) {
+                margin-right: auto;
+                margin-bottom: 5px;
+            }
+
+            &:hover, &:focus {
+                background-image: url('../images/cancel_graphic_rollover.svg');
+                outline: none;
+            }
+        }
+
+        .confirm-btn {
+            background-image: url('../images/confirm_graphic.svg');
+
+            &:hover, &:focus {
+                background-image: url('../images/confirm_graphic_rollover.svg');
+                outline: none;
+            }
+        }
     }
 }
