@@ -220,7 +220,7 @@ function InsertUsers() {
             >
                 <input
                     name="course"
-                    placeholder="course name"                
+                    placeholder="course"                
                     value={course}
                     onChange={(e) => handleCourseAndAssets(e)}
                     tabIndex={globalState.showModal ? '-1' : '0'}
@@ -345,7 +345,7 @@ function InsertUsers() {
 
                 <input 
                     name="user" 
-                    placeholder='wpa name'
+                    placeholder='wpa'
                     value={user}
                     onChange={(e) => setUser(e.target.value)}
                     tabIndex={globalState.showModal ? '-1' : '0'}

@@ -24,7 +24,7 @@ mongoose.connect(MONGO_URI), {
     useUnifiedTopology: true
 };
 
-// data scema and model
+// data schema and model
 const userSchema = {
     course: String,
     la: String,
