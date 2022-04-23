@@ -8,6 +8,8 @@ function GetUsers() {
     const globalState = useContext(GlobalState);
     const databaseContext = useContext(DatabaseRequest);  
 
+    const [isAccordionOpen, setIsAccordionOpen] = useState(false);
+    const [lastAccordionEl, setLastAccordionEl] = useState('');
     const [courseNames, setCourseNames] = useState([]);
 
     useEffect(() => {
@@ -36,12 +38,47 @@ function GetUsers() {
         }
     });
 
-    const toggle = (course) => {
-        if (globalState.selected === course) {
-            return globalState.updateState({ selected: null });
+    const toggleEnterChevron = (e) => {
+        if (e.target.children[1]) {
+            if (isAccordionOpen === true && e.target.children[1].dataset.id === lastAccordionEl.dataset.id) {
+                e.target.children[1].classList = 'data-item-chevron-close';
+            } else if (isAccordionOpen === true && e.target.children[1].dataset.id !== lastAccordionEl.dataset.id) {
+                e.target.children[1].classList = 'data-item-chevron-open';
+            } else {
+                e.target.children[1].classList = 'data-item-chevron-open';
+            }
         }
+    };
 
-        globalState.updateState({ selected: course });
+    const toggleLeaveChevron = (e) => {
+        if (e.target.children[1]) {
+            if (isAccordionOpen === true && e.target.children[1].dataset.id === lastAccordionEl.dataset.id) {
+                e.target.children[1].classList = 'data-item-chevron-open';
+            } else if (isAccordionOpen === true && e.target.children[1].dataset.id !== lastAccordionEl.dataset.id) {
+                e.target.children[1].classList = 'data-item-chevron-close';
+            } else {
+                e.target.children[1].classList = 'data-item-chevron-close';
+            }
+        }        
+    };
+
+    const toggle = (e, course) => {
+        if (e.key === 'Enter' || e.code === 'Space' || e.type === 'click') {
+            if (globalState.selected === course) {
+                setIsAccordionOpen(false);
+                e.target.children[1].classList = 'data-item-chevron-close';
+                return globalState.updateState({ selected: null });
+            }
+
+            if (lastAccordionEl) {
+                lastAccordionEl.classList = 'data-item-chevron-close';
+            }
+
+            setLastAccordionEl(e.target.children[1])
+            setIsAccordionOpen(true);
+            globalState.updateState({ selected: course });
+            e.target.children[1].classList = 'data-item-chevron-open';
+        }
     };
 
     const handleModal = (e, data) => {
@@ -52,7 +89,9 @@ function GetUsers() {
     };
 
   return (
-    <div className='data-container'> 
+    <div 
+        className='data-container'                     
+    > 
 
         {courseNames && courseNames.map((course, index) =>         
         
@@ -62,17 +101,24 @@ function GetUsers() {
             >                
                 <div 
                     className='data-item-heading-parent'
-                    onClick={() => toggle(course)}
+                    onClick={(e) => toggle(e, course)}
+                    onKeyDown={(e) => toggle(e, course)}
+                    tabIndex={globalState.showModal ? '-1' : '0'}
+                    onMouseEnter={(e) => toggleEnterChevron(e)}
+                    onFocus={(e) => toggleEnterChevron(e)}
+                    onMouseLeave={(e) => toggleLeaveChevron(e)}
+                    onBlur={(e) => toggleLeaveChevron(e)}
                 >
                     <h2 
                         className='data-item-heading'
                     >
                         {course}
                     </h2>
-                    <img 
+                    <img                         
                         src={Chevron} 
                         alt='chevron icon'
-                        className={globalState.selected === course ? 'data-item-chevron-open' : 'data-item-chevron-close'}
+                        className='data-item-chevron-close'
+                        data-id={index}
                     />
                 </div>
 
@@ -85,16 +131,16 @@ function GetUsers() {
                             <td className='data-item-table-titles'>Asset</td>
                             <td className='data-item-table-titles'>WPA</td>
                         </tr>
-                    </thead>
-                    <tbody> 
+                    </thead>                    
 
                         {globalState.users && globalState.users.sort((a, b) => /^[0-9]/.test(a.la) - /^[0-9]/.test(b.la) || a.la.localeCompare(b.la, undefined, { numeric: true })).map((data, index) => {
                             return (
                                 course === data.course &&                                                                 
-                                <>                                
+                                <tbody
+                                    key={index}
+                                >                                
                                     <tr                                         
                                         className='data-item-table-contents'
-                                        key={index}
                                     >
                                         <td>{data.la}</td>
                                         <td>{data.asset ? data.asset : "N/A"}</td>
@@ -117,10 +163,9 @@ function GetUsers() {
                                         </td>
                                     </tr>
 
-                                </>
+                                </tbody>
                             )
                         })}
-                    </tbody>
                 </table>
             </div>            
         )}
