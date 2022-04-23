@@ -36,18 +36,18 @@ function GetUsers() {
         }
     });
 
-    const toggle = (index) => {
-        if (globalState.selected === index) {
+    const toggle = (course) => {
+        if (globalState.selected === course) {
             return globalState.updateState({ selected: null });
         }
 
-        globalState.updateState({ selected: index });
+        globalState.updateState({ selected: course });
     };
 
     const handleModal = (e, data) => {
         if (e.key === 'Enter' || e.code === 'Space' || e.type === 'click') {
-            globalState.updateState({ showModal: true, modalData: data })
-            document.body.classList.add('active-modal')
+            globalState.updateState({ showModal: true, modalData: data });
+            document.body.classList.add('active-modal');
         }
     };
 
@@ -62,7 +62,7 @@ function GetUsers() {
             >                
                 <div 
                     className='data-item-heading-parent'
-                    onClick={() => toggle(index)}
+                    onClick={() => toggle(course)}
                 >
                     <h2 
                         className='data-item-heading'
@@ -72,12 +72,12 @@ function GetUsers() {
                     <img 
                         src={Chevron} 
                         alt='chevron icon'
-                        className={globalState.selected === index ? 'data-item-chevron-open' : 'data-item-chevron-close'}
+                        className={globalState.selected === course ? 'data-item-chevron-open' : 'data-item-chevron-close'}
                     />
                 </div>
 
                 <table 
-                    className={globalState.selected === index ? 'data-item-table-open' : 'data-item-table-close'}
+                    className={globalState.selected === course ? 'data-item-table-open' : 'data-item-table-close'}
                 >
                     <thead>
                         <tr>
