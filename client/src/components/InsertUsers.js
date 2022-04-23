@@ -126,6 +126,7 @@ function InsertUsers() {
                                 globalState.updateState({ validate: true });
                                 databaseContext.getUpdate(validated, (data => null));
                                 databaseContext.saveUpdate(newUser, (data => null));
+                                globalState.updateState({ selected: course });
 
                                 setCourse("");
                                 setLa("LA0");
@@ -156,6 +157,7 @@ function InsertUsers() {
                         globalState.updateState({ validate: true });
                         databaseContext.getUpdate(validated, (data => null));
                         databaseContext.saveUpdate(newUser, (data => null));
+                        globalState.updateState({ selected: course });
 
                         setCourse("");
                         setLa("LA0");
