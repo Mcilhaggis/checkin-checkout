@@ -24,7 +24,7 @@ function DeleteConfirmation() {
                 validated = true;
                 globalState.updateState({ validate: true });
                 databaseContext.getUpdate(validated, (data => null));            
-                databaseContext.deleteUpdate(deleted, (data => null))
+                databaseContext.deleteUpdate(deleted, (data => null));
                 globalState.updateState({ showModal: false, modalData: {} });
                 document.body.classList.remove('active-modal');
             })                

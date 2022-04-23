@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { GlobalState, DatabaseRequest } from '../utils/GlobalContext';
 import DeleteConfirmation from './DeleteConfirmation';
+import Chevron from '../images/chevron.svg';
 
 function GetUsers() {
 
@@ -35,10 +36,18 @@ function GetUsers() {
         }
     });
 
+    const toggle = (course) => {
+        if (globalState.selected === course) {
+            return globalState.updateState({ selected: null });
+        }
+
+        globalState.updateState({ selected: course });
+    };
+
     const handleModal = (e, data) => {
         if (e.key === 'Enter' || e.code === 'Space' || e.type === 'click') {
-            globalState.updateState({ showModal: true, modalData: data })
-            document.body.classList.add('active-modal')
+            globalState.updateState({ showModal: true, modalData: data });
+            document.body.classList.add('active-modal');
         }
     };
 
@@ -50,37 +59,49 @@ function GetUsers() {
             <div 
                 key={index}
                 className='data-item' 
-            >
+            >                
+                <div 
+                    className='data-item-heading-parent'
+                    onClick={() => toggle(course)}
+                >
+                    <h2 
+                        className='data-item-heading'
+                    >
+                        {course}
+                    </h2>
+                    <img 
+                        src={Chevron} 
+                        alt='chevron icon'
+                        className={globalState.selected === course ? 'data-item-chevron-open' : 'data-item-chevron-close'}
+                    />
+                </div>
 
-                <table style={{width: "100%"}}>
+                <table 
+                    className={globalState.selected === course ? 'data-item-table-open' : 'data-item-table-close'}
+                >
                     <thead>
                         <tr>
-                            <th className='data-item-heading'>{course}</th>
+                            <td className='data-item-table-titles'>LA</td>
+                            <td className='data-item-table-titles'>Asset</td>
+                            <td className='data-item-table-titles'>WPA</td>
                         </tr>
                     </thead>
-
-                    <tbody>
-                        <tr>
-                            <td className='data-item-titles'>LA</td>
-                            <td className='data-item-titles'>Asset</td>
-                            <td className='data-item-titles'>WPA</td>
-                            <td className='data-item-titles'>Check-out</td>
-                        </tr>
+                    <tbody> 
 
                         {globalState.users && globalState.users.sort((a, b) => /^[0-9]/.test(a.la) - /^[0-9]/.test(b.la) || a.la.localeCompare(b.la, undefined, { numeric: true })).map((data, index) => {
                             return (
-                                course === data.course && 
-                                <>
-                                    <tr 
+                                course === data.course &&                                                                 
+                                <>                                
+                                    <tr                                         
+                                        className='data-item-table-contents'
                                         key={index}
-                                        className='data-item-contents'
                                     >
                                         <td>{data.la}</td>
                                         <td>{data.asset ? data.asset : "N/A"}</td>
                                         <td>{data.user}</td> 
                                         <td>
                                             <i 
-                                                className='check-out-btn' 
+                                                className='data-item-check-out-btn' 
                                                 title='check-out'
                                                 onClick={(e) => handleModal(e, data)}
                                                 onKeyDown={(e) => handleModal(e, data)}
@@ -92,10 +113,11 @@ function GetUsers() {
                                         <td 
                                             colSpan="4"                                        
                                         >
-                                            <hr className='data-item-line' />
+                                            <hr className='data-item-table-line' />
                                         </td>
                                     </tr>
-                                </>                           
+
+                                </>
                             )
                         })}
                     </tbody>
