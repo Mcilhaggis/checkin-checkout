@@ -9,7 +9,6 @@ function GetUsers() {
     const databaseContext = useContext(DatabaseRequest);  
 
     const [selected, setSelected] = useState(null);
-
     const [courseNames, setCourseNames] = useState([]);
 
     useEffect(() => {
@@ -61,47 +60,41 @@ function GetUsers() {
             <div 
                 key={index}
                 className='data-item' 
-            >
-                
+            >                
                 <div 
-                    className='test-title'
+                    className='data-item-heading-parent'
                     onClick={() => toggle(index)}
                 >
-                    <h2 className='test-heading'>{course}</h2>
+                    <h2 
+                        className='data-item-heading'
+                    >
+                        {course}
+                    </h2>
                     <img 
                         src={Chevron} 
                         alt='chevron icon'
-                        className={selected === index ? 'chevron-open' : 'chevron-close'}
+                        className={selected === index ? 'data-item-chevron-open' : 'data-item-chevron-close'}
                     />
                 </div>
 
                 <table 
-                    className={selected === index ? 'table-open' : 'table-close'}
-                    // style={{height: `${selected ? '100%' : '0px'}`}}
+                    className={selected === index ? 'data-item-table-open' : 'data-item-table-close'}
                 >
-
-                    {/* <th className='data-item-heading'>{course}</th> */}
-
-
-
                     <thead>
                         <tr>
-                            <td className='data-item-titles'>LA</td>
-                            <td className='data-item-titles'>Asset</td>
-                            <td className='data-item-titles'>WPA</td>
-                            {/* <td className='data-item-titles'>Check-out</td> */}
+                            <td className='data-item-table-titles'>LA</td>
+                            <td className='data-item-table-titles'>Asset</td>
+                            <td className='data-item-table-titles'>WPA</td>
                         </tr>
                     </thead>
-
                     <tbody> 
 
                         {globalState.users && globalState.users.sort((a, b) => /^[0-9]/.test(a.la) - /^[0-9]/.test(b.la) || a.la.localeCompare(b.la, undefined, { numeric: true })).map((data, index) => {
                             return (
-                                course === data.course && 
-                                    <>
-                                
+                                course === data.course &&                                                                 
+                                <>                                
                                     <tr                                         
-                                        className='data-item-contents'
+                                        className='data-item-table-contents'
                                         key={index}
                                     >
                                         <td>{data.la}</td>
@@ -109,7 +102,7 @@ function GetUsers() {
                                         <td>{data.user}</td> 
                                         <td>
                                             <i 
-                                                className='check-out-btn' 
+                                                className='data-item-check-out-btn' 
                                                 title='check-out'
                                                 onClick={(e) => handleModal(e, data)}
                                                 onKeyDown={(e) => handleModal(e, data)}
@@ -121,7 +114,7 @@ function GetUsers() {
                                         <td 
                                             colSpan="4"                                        
                                         >
-                                            <hr className='data-item-line' />
+                                            <hr className='data-item-table-line' />
                                         </td>
                                     </tr>
 
