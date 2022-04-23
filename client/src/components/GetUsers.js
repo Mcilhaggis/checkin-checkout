@@ -8,7 +8,6 @@ function GetUsers() {
     const globalState = useContext(GlobalState);
     const databaseContext = useContext(DatabaseRequest);  
 
-    const [selected, setSelected] = useState(null);
     const [courseNames, setCourseNames] = useState([]);
 
     useEffect(() => {
@@ -38,11 +37,11 @@ function GetUsers() {
     });
 
     const toggle = (index) => {
-        if (selected === index) {
-            return setSelected(null);
+        if (globalState.selected === index) {
+            return globalState.updateState({ selected: null });
         }
 
-        setSelected(index);
+        globalState.updateState({ selected: index });
     };
 
     const handleModal = (e, data) => {
@@ -73,12 +72,12 @@ function GetUsers() {
                     <img 
                         src={Chevron} 
                         alt='chevron icon'
-                        className={selected === index ? 'data-item-chevron-open' : 'data-item-chevron-close'}
+                        className={globalState.selected === index ? 'data-item-chevron-open' : 'data-item-chevron-close'}
                     />
                 </div>
 
                 <table 
-                    className={selected === index ? 'data-item-table-open' : 'data-item-table-close'}
+                    className={globalState.selected === index ? 'data-item-table-open' : 'data-item-table-close'}
                 >
                     <thead>
                         <tr>

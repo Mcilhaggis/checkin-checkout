@@ -27,6 +27,7 @@ function DeleteConfirmation() {
                 databaseContext.deleteUpdate(deleted, (data => null))
                 globalState.updateState({ showModal: false, modalData: {} });
                 document.body.classList.remove('active-modal');
+                globalState.updateState({ selected: null });
             })                
             .catch(err => console.log(err))
         }

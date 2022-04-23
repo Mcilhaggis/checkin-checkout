@@ -15,6 +15,7 @@ export const GlobalContext = (props) => {
         oldUser: {},
         showModal: false,
         modalData: {},
+        selected: null,
 
         updateState: (stateUpdates) => {
             setStateInfo(currentStateInfo => ({ ...currentStateInfo, ...stateUpdates}));
