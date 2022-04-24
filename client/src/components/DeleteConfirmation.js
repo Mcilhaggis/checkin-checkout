@@ -22,10 +22,9 @@ function DeleteConfirmation() {
             axios.delete(`/delete/${data._id}`)
             .then((res) => {
                 validated = true;
-                globalState.updateState({ validate: true });
+                globalState.updateState({ validate: true, showModal: false, modalData: {} });
                 databaseContext.getUpdate(validated, (data => null));            
                 databaseContext.deleteUpdate(deleted, (data => null));
-                globalState.updateState({ showModal: false, modalData: {} });
                 document.body.classList.remove('active-modal');
             })                
             .catch(err => console.log(err))
