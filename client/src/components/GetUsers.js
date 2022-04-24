@@ -41,7 +41,7 @@ function GetUsers() {
     });
 
     const toggleEnterChevron = (e) => {
-        for (let i = 0; i < chevronRef.current.length; i++) {
+        for (let i = 0; i < chevronRef.current.filter(Boolean).length; i++) {
             if (e.target.dataset.id === chevronRef.current[i].dataset.id) {
                 if (isAccordionOpen === true && chevronRef.current[i].dataset.id === lastAccordionEl.dataset.id) {
                     chevronRef.current[i].className = 'data-item-chevron-close';
@@ -55,7 +55,7 @@ function GetUsers() {
     };
 
     const toggleLeaveChevron = (e) => {        
-        for (let i = 0; i < chevronRef.current.length; i++) {
+        for (let i = 0; i < chevronRef.current.filter(Boolean).length; i++) {
             if (e.target.dataset.id === chevronRef.current[i].dataset.id) {
                 if (isAccordionOpen === true && chevronRef.current[i].dataset.id === lastAccordionEl.dataset.id) {
                     chevronRef.current[i].className = 'data-item-chevron-open';
@@ -71,7 +71,7 @@ function GetUsers() {
     const toggle = (e, course) => {
         if (e.key === 'Enter' || e.code === 'Space' || e.type === 'click') {
 
-            for (let i = 0; i < chevronRef.current.length; i++) {
+            for (let i = 0; i < chevronRef.current.filter(Boolean).length; i++) {
                 if (e.target.dataset.id === chevronRef.current[i].dataset.id) {
                      if (globalState.selected === course) {
                         setIsAccordionOpen(false);
