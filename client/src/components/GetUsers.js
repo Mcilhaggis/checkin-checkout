@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext, useState, useRef } from 'react';
 import { GlobalState, DatabaseRequest } from '../utils/GlobalContext';
 import DeleteConfirmation from './DeleteConfirmation';
 import Chevron from '../images/chevron.svg';
@@ -7,6 +7,8 @@ function GetUsers() {
 
     const globalState = useContext(GlobalState);
     const databaseContext = useContext(DatabaseRequest);  
+
+    const chevronRef = useRef([]);
 
     const [isAccordionOpen, setIsAccordionOpen] = useState(false);
     const [lastAccordionEl, setLastAccordionEl] = useState('');
@@ -39,45 +41,54 @@ function GetUsers() {
     });
 
     const toggleEnterChevron = (e) => {
-        if (e.target.children[1]) {
-            if (isAccordionOpen === true && e.target.children[1].dataset.id === lastAccordionEl.dataset.id) {
-                e.target.children[1].classList = 'data-item-chevron-close';
-            } else if (isAccordionOpen === true && e.target.children[1].dataset.id !== lastAccordionEl.dataset.id) {
-                e.target.children[1].classList = 'data-item-chevron-open';
-            } else {
-                e.target.children[1].classList = 'data-item-chevron-open';
+        for (let i = 0; i < chevronRef.current.length; i++) {
+            if (e.target.dataset.id === chevronRef.current[i].dataset.id) {
+                if (isAccordionOpen === true && chevronRef.current[i].dataset.id === lastAccordionEl.dataset.id) {
+                    chevronRef.current[i].className = 'data-item-chevron-close';
+                } else if (isAccordionOpen === true && chevronRef.current[i].dataset.id !== lastAccordionEl.dataset.id) {
+                    chevronRef.current[i].className = 'data-item-chevron-open';
+                } else {
+                    chevronRef.current[i].className = 'data-item-chevron-open';
+                }
             }
         }
     };
 
-    const toggleLeaveChevron = (e) => {
-        if (e.target.children[1]) {
-            if (isAccordionOpen === true && e.target.children[1].dataset.id === lastAccordionEl.dataset.id) {
-                e.target.children[1].classList = 'data-item-chevron-open';
-            } else if (isAccordionOpen === true && e.target.children[1].dataset.id !== lastAccordionEl.dataset.id) {
-                e.target.children[1].classList = 'data-item-chevron-close';
-            } else {
-                e.target.children[1].classList = 'data-item-chevron-close';
+    const toggleLeaveChevron = (e) => {        
+        for (let i = 0; i < chevronRef.current.length; i++) {
+            if (e.target.dataset.id === chevronRef.current[i].dataset.id) {
+                if (isAccordionOpen === true && chevronRef.current[i].dataset.id === lastAccordionEl.dataset.id) {
+                    chevronRef.current[i].className = 'data-item-chevron-open';
+                } else if (isAccordionOpen === true && chevronRef.current[i].dataset.id !== lastAccordionEl.dataset.id) {
+                    chevronRef.current[i].className = 'data-item-chevron-close';
+                } else {
+                    chevronRef.current[i].className = 'data-item-chevron-close';
+                }
             }
-        }        
+        }
     };
 
     const toggle = (e, course) => {
         if (e.key === 'Enter' || e.code === 'Space' || e.type === 'click') {
-            if (globalState.selected === course) {
-                setIsAccordionOpen(false);
-                e.target.children[1].classList = 'data-item-chevron-close';
-                return globalState.updateState({ selected: null });
-            }
 
-            if (lastAccordionEl) {
-                lastAccordionEl.classList = 'data-item-chevron-close';
-            }
+            for (let i = 0; i < chevronRef.current.length; i++) {
+                if (e.target.dataset.id === chevronRef.current[i].dataset.id) {
+                     if (globalState.selected === course) {
+                        setIsAccordionOpen(false);
+                        chevronRef.current[i].className = 'data-item-chevron-close'
+                        return globalState.updateState({ selected: null });
+                    }
 
-            setLastAccordionEl(e.target.children[1])
-            setIsAccordionOpen(true);
-            globalState.updateState({ selected: course });
-            e.target.children[1].classList = 'data-item-chevron-open';
+                    if (lastAccordionEl) {
+                        lastAccordionEl.classList = 'data-item-chevron-close';
+                    }
+
+                    setLastAccordionEl(chevronRef.current[i])
+                    setIsAccordionOpen(true);
+                    globalState.updateState({ selected: course });
+                    chevronRef.current[i].className = 'data-item-chevron-open'
+                }
+            }
         }
     };
 
@@ -108,9 +119,11 @@ function GetUsers() {
                     onFocus={(e) => toggleEnterChevron(e)}
                     onMouseLeave={(e) => toggleLeaveChevron(e)}
                     onBlur={(e) => toggleLeaveChevron(e)}
+                    data-id={index}
                 >
                     <h2 
                         className='data-item-heading'
+                        data-id={index}
                     >
                         {course}
                     </h2>
@@ -119,6 +132,7 @@ function GetUsers() {
                         alt='chevron icon'
                         className='data-item-chevron-close'
                         data-id={index}
+                        ref={el => chevronRef.current[index] = el}
                     />
                 </div>
 
