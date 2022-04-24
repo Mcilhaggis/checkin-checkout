@@ -41,27 +41,31 @@ function GetUsers() {
     });
 
     const toggleEnterChevron = (e) => {
-        if (e.target.children[1]) {
-            if (isAccordionOpen === true && e.target.children[1].dataset.id === lastAccordionEl.dataset.id) {
-                e.target.children[1].classList = 'data-item-chevron-close';
-            } else if (isAccordionOpen === true && e.target.children[1].dataset.id !== lastAccordionEl.dataset.id) {
-                e.target.children[1].classList = 'data-item-chevron-open';
-            } else {
-                e.target.children[1].classList = 'data-item-chevron-open';
+        for (let i = 0; i < chevronRef.current.length; i++) {
+            if (e.target.dataset.id === chevronRef.current[i].dataset.id) {
+                if (isAccordionOpen === true && chevronRef.current[i].dataset.id === lastAccordionEl.dataset.id) {
+                    chevronRef.current[i].className = 'data-item-chevron-close';
+                } else if (isAccordionOpen === true && chevronRef.current[i].dataset.id !== lastAccordionEl.dataset.id) {
+                    chevronRef.current[i].className = 'data-item-chevron-open';
+                } else {
+                    chevronRef.current[i].className = 'data-item-chevron-open';
+                }
             }
         }
     };
 
-    const toggleLeaveChevron = (e) => {
-        if (e.target.children[1]) {
-            if (isAccordionOpen === true && e.target.children[1].dataset.id === lastAccordionEl.dataset.id) {
-                e.target.children[1].classList = 'data-item-chevron-open';
-            } else if (isAccordionOpen === true && e.target.children[1].dataset.id !== lastAccordionEl.dataset.id) {
-                e.target.children[1].classList = 'data-item-chevron-close';
-            } else {
-                e.target.children[1].classList = 'data-item-chevron-close';
+    const toggleLeaveChevron = (e) => {        
+        for (let i = 0; i < chevronRef.current.length; i++) {
+            if (e.target.dataset.id === chevronRef.current[i].dataset.id) {
+                if (isAccordionOpen === true && chevronRef.current[i].dataset.id === lastAccordionEl.dataset.id) {
+                    chevronRef.current[i].className = 'data-item-chevron-open';
+                } else if (isAccordionOpen === true && chevronRef.current[i].dataset.id !== lastAccordionEl.dataset.id) {
+                    chevronRef.current[i].className = 'data-item-chevron-close';
+                } else {
+                    chevronRef.current[i].className = 'data-item-chevron-close';
+                }
             }
-        }        
+        }
     };
 
     const toggle = (e, course) => {
@@ -69,8 +73,6 @@ function GetUsers() {
 
             for (let i = 0; i < chevronRef.current.length; i++) {
                 if (e.target.dataset.id === chevronRef.current[i].dataset.id) {
-                    console.log(chevronRef.current[i])
-
                      if (globalState.selected === course) {
                         setIsAccordionOpen(false);
                         chevronRef.current[i].className = 'data-item-chevron-close'
@@ -81,7 +83,7 @@ function GetUsers() {
                         lastAccordionEl.classList = 'data-item-chevron-close';
                     }
 
-                    setLastAccordionEl(e.target.children[1])
+                    setLastAccordionEl(chevronRef.current[i])
                     setIsAccordionOpen(true);
                     globalState.updateState({ selected: course });
                     chevronRef.current[i].className = 'data-item-chevron-open'
