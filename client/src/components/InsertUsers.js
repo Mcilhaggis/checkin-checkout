@@ -123,10 +123,9 @@ function InsertUsers() {
                             axios.post('/newuser', newUser)
                             .then((res) => {
                                 validated = true;
-                                globalState.updateState({ validate: true });
+                                globalState.updateState({ validate: true, selected: course });
                                 databaseContext.getUpdate(validated, (data => null));
                                 databaseContext.saveUpdate(newUser, (data => null));
-                                globalState.updateState({ selected: course });
 
                                 setCourse("");
                                 setLa("LA0");
@@ -154,10 +153,9 @@ function InsertUsers() {
                     axios.post('/newuser', newUser)
                     .then((res) => {
                         validated = true;
-                        globalState.updateState({ validate: true });
+                        globalState.updateState({ validate: true, selected: course });
                         databaseContext.getUpdate(validated, (data => null));
                         databaseContext.saveUpdate(newUser, (data => null));
-                        globalState.updateState({ selected: course });
 
                         setCourse("");
                         setLa("LA0");
