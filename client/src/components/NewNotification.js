@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState, useRef } from 'react';
 import { GlobalState } from "../utils/GlobalContext";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import saved from '../sounds/saved.mp3'
+import saved from '../sounds/saved.mp3';
 
 function NewNotification() {
 
@@ -18,9 +18,9 @@ function NewNotification() {
                 setNewUserMessage(`${userControlContext.newUser.user} has entered ${userControlContext.newUser.course} ${userControlContext.newUser.la}`);
             } else if (userControlContext.newUser.asset) {
                 setNewUserMessage(`${userControlContext.newUser.user} has entered ${userControlContext.newUser.course} ${userControlContext.newUser.la} ${userControlContext.newUser.asset}`);
-            }
-        }
-    }, [userControlContext.newUser, newUserMessage])
+            };
+        };
+    }, [userControlContext.newUser, newUserMessage]);
 
     toast.configure();
 
@@ -30,11 +30,11 @@ function NewNotification() {
                 pauseOnFocusLoss: false,
                 pauseOnHover: false,
                 newestOnTop: true
-            })
+            });
             audioRef.current.load();
             audioRef.current.play();
             setNewUserMessage("");
-        }
+        };
     };
 
   return (
@@ -47,6 +47,6 @@ function NewNotification() {
         </audio>
     </div>
   )
-}
+};
 
 export default NewNotification;

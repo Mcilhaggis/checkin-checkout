@@ -29,8 +29,8 @@ function InsertUsers() {
                 break;
             } else {
                 setNumberOfLearningActivities(0);
-            }
-        }
+            };
+        };
     }, [course]);
 
     const handleCourseAndAssets = (e) => {
@@ -42,7 +42,7 @@ function InsertUsers() {
         } else {
             setRender(true);
             setLa("ILO");
-        }
+        };
     };
 
     const handleSubmit = (e) => {
@@ -57,7 +57,7 @@ function InsertUsers() {
         
         if (la !== "ILO" && la !== "LD" && la !== "AT") {
             newUser.asset = "";
-        }
+        };
 
         if (!course && !user) {
             setNewErrorMessage("you must fill in the required fields");
@@ -72,7 +72,7 @@ function InsertUsers() {
                 setNewErrorMessage("please insert LD asset number(s)");
             } else {
                 setNewErrorMessage("please insert AT asset number(s)");
-            }
+            };
         } else if (globalState.users.length > 0) {
 
             for (let j = 0; j < globalState.users.length; j++) {
@@ -115,14 +115,13 @@ function InsertUsers() {
                     for (let i = 0; i < CourseInfo.length; i++) {
                         if (i === CourseInfo.length -1 && course !== CourseInfo[i].course) {
                             setNewErrorMessage("invalid course name");
-                        }
+                        };
 
                         if (course === CourseInfo[i].course) {
-                            let validated = false;
+                            let validated = true;
 
                             axios.post('/newuser', newUser)
                             .then((res) => {
-                                validated = true;
                                 globalState.updateState({ validate: true, selected: course });
                                 databaseContext.getUpdate(validated, (data => null));
                                 databaseContext.saveUpdate(newUser, (data => null));
@@ -135,24 +134,22 @@ function InsertUsers() {
                             })                 
                             .catch(err => console.log(err))
                             break;
-                        } 
-
-                    }
-                } 
-            }                               
+                        }; 
+                    };
+                }; 
+            };                               
         } else {
             for (let i = 0; i < CourseInfo.length; i++) {
                 
                 if (i === CourseInfo.length -1 && course !== CourseInfo[i].course) {
                     setNewErrorMessage("invalid course name");
-                }
+                };
 
                 if (course === CourseInfo[i].course) {
-                    let validated = false;
+                    let validated = true;
 
                     axios.post('/newuser', newUser)
                     .then((res) => {
-                        validated = true;
                         globalState.updateState({ validate: true, selected: course });
                         databaseContext.getUpdate(validated, (data => null));
                         databaseContext.saveUpdate(newUser, (data => null));
@@ -165,15 +162,15 @@ function InsertUsers() {
                     })                  
                     .catch(err => console.log(err))
                     break;
-                }                   
-            } 
-        }        
+                };                  
+            }; 
+        };        
     };
 
     databaseContext.saveUpdate(null, (data) => {
         if (!data._id) {
-            globalState.updateState({ newUser: data });
-        }
+            return globalState.updateState({ newUser: data });
+        };
     });
 
     toast.configure();
@@ -184,11 +181,11 @@ function InsertUsers() {
                 pauseOnFocusLoss: false,
                 pauseOnHover: false,
                 newestOnTop: true
-            })
+            });
             audioRef.current.load();
             audioRef.current.play();
             setNewErrorMessage("");
-        }
+        };
     };
 
   return (
