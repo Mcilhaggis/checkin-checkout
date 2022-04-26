@@ -99,6 +99,12 @@ function GetUsers() {
         }
     };
 
+    databaseContext.deleteUpdate(null, (data) => {
+        if (data._id) {
+            globalState.updateState({ oldUser: data });
+        }
+    });
+
   return (
     <div 
         className='data-container'                     
