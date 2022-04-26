@@ -11,24 +11,22 @@ function DeleteConfirmation() {
         if (e.key === 'Enter' || e.code === 'Space' || e.type === 'click') {
             globalState.updateState({ showModal: false, modalData: {} });
             document.body.classList.remove('active-modal');
-        }
+        };
     };
 
     const handleDelete = (e, data) => {
         if (e.key === 'Enter' || e.code === 'Space' || e.type === 'click') {
-            let validated = false;
-            let deleted = data;
+            let validated = true;
             
             axios.delete(`/delete/${data._id}`)
             .then((res) => {
-                validated = true;
                 globalState.updateState({ validate: true, showModal: false, modalData: {} });
                 databaseContext.getUpdate(validated, (data => null));            
-                databaseContext.deleteUpdate(deleted, (data => null));
+                databaseContext.deleteUpdate(data, (data => null));
                 document.body.classList.remove('active-modal');
             })                
-            .catch(err => console.log(err))
-        }
+            .catch(err => console.log(err));
+        };
     };
 
   return (
@@ -68,6 +66,6 @@ function DeleteConfirmation() {
         </div>
     </div>
   )
-}
+};
 
 export default DeleteConfirmation;

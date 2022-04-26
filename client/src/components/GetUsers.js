@@ -28,16 +28,16 @@ function GetUsers() {
             for (let i = 0; i < globalState.users.length; i++) {
                 allCourses.push(globalState.users[i].course);
                 allCourses.sort();
-            }
+            };
     
             setCourseNames(Array.from(new Set(allCourses)));
-        }
+        };
     }, [globalState.users]);
 
     databaseContext.getUpdate(null, (data) => {
         if (data === true) {
-            globalState.updateState({ socketValidate: data });
-        }
+            return globalState.updateState({ socketValidate: data });
+        };
     });
 
     const toggleEnterChevron = (e) => {
@@ -49,9 +49,9 @@ function GetUsers() {
                     chevronRef.current[i].className = 'data-item-chevron-open';
                 } else {
                     chevronRef.current[i].className = 'data-item-chevron-open';
-                }
-            }
-        }
+                };
+            };
+        };
     };
 
     const toggleLeaveChevron = (e) => {        
@@ -63,9 +63,9 @@ function GetUsers() {
                     chevronRef.current[i].className = 'data-item-chevron-close';
                 } else {
                     chevronRef.current[i].className = 'data-item-chevron-close';
-                }
-            }
-        }
+                };
+            };
+        };
     };
 
     const toggle = (e, course) => {
@@ -75,43 +75,41 @@ function GetUsers() {
                 if (e.target.dataset.id === chevronRef.current[i].dataset.id) {
                      if (globalState.selected === course) {
                         setIsAccordionOpen(false);
-                        chevronRef.current[i].className = 'data-item-chevron-close'
+                        chevronRef.current[i].className = 'data-item-chevron-close';
                         return globalState.updateState({ selected: null });
-                    }
+                    };
 
                     if (lastAccordionEl) {
                         lastAccordionEl.classList = 'data-item-chevron-close';
-                    }
+                    };
 
-                    setLastAccordionEl(chevronRef.current[i])
+                    setLastAccordionEl(chevronRef.current[i]);
                     setIsAccordionOpen(true);
                     globalState.updateState({ selected: course });
-                    chevronRef.current[i].className = 'data-item-chevron-open'
-                }
-            }
-        }
+                    chevronRef.current[i].className = 'data-item-chevron-open';
+                };
+            };
+        };
     };
 
     const handleModal = (e, data) => {
         if (e.key === 'Enter' || e.code === 'Space' || e.type === 'click') {
             globalState.updateState({ showModal: true, modalData: data });
             document.body.classList.add('active-modal');
-        }
+        };
     };
 
     databaseContext.deleteUpdate(null, (data) => {
         if (data._id) {
             globalState.updateState({ oldUser: data });
-        }
+        };
     });
 
   return (
     <div 
         className='data-container'                     
     > 
-
-        {courseNames && courseNames.map((course, index) =>         
-        
+        {courseNames && courseNames.map((course, index) =>                 
             <div 
                 key={index}
                 className='data-item' 
@@ -182,7 +180,6 @@ function GetUsers() {
                                             <hr className='data-item-table-line' />
                                         </td>
                                     </tr>
-
                                 </tbody>
                             )
                         })}
@@ -192,6 +189,6 @@ function GetUsers() {
         {globalState.showModal && <DeleteConfirmation/>}
     </div>
   )
-}
+};
 
 export default GetUsers;

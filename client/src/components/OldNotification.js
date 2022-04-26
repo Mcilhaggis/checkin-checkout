@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState, useRef } from 'react';
 import { GlobalState } from "../utils/GlobalContext";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import deleted from '../sounds/deleted.mp3'
+import deleted from '../sounds/deleted.mp3';
 
 function OldNotification() {
 
@@ -18,12 +18,12 @@ function OldNotification() {
                 setOldUserMessage(`${userControlContext.oldUser.user} has exited ${userControlContext.oldUser.course} ${userControlContext.oldUser.la}`);
             } else if (userControlContext.oldUser.asset) {
                 setOldUserMessage(`${userControlContext.oldUser.user} has exited ${userControlContext.oldUser.course} ${userControlContext.oldUser.la} ${userControlContext.oldUser.asset}`);
-            }
-        }
+            };
+        };
 
-    }, [userControlContext.oldUser, oldUserMessage])
+    }, [userControlContext.oldUser, oldUserMessage]);
 
-    toast.configure()
+    toast.configure();
 
     const oldNotify = () => {
         if(oldUserMessage) {
@@ -31,11 +31,11 @@ function OldNotification() {
                 pauseOnFocusLoss: false,
                 pauseOnHover: false,
                 newestOnTop: true
-            })
+            });
             audioRef.current.load();
             audioRef.current.play();
             setOldUserMessage("");
-        }
+        };
     };
 
   return (
@@ -48,6 +48,6 @@ function OldNotification() {
         </audio>
     </div>
   )
-}
+};
 
 export default OldNotification;
