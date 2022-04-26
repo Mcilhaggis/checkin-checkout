@@ -36,7 +36,12 @@ form {
     }
     
     input {
+        font-family: $source-code-pro;
+        color: $chathams-blue;
+        text-align: center;
+        font-size: 23px;
         height: 50px;
+        width: 181px;
     
         @media (max-width: 720px) {
             width: fit-content;
@@ -45,10 +50,6 @@ form {
     
     select {
         height: 60px;
-    
-        @media (max-width: 720px) {
-            width: 181px;
-        }
     }
     
     ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -81,9 +82,9 @@ form {
         cursor: pointer;
         width: 181px;
         text-align: center;
-    
-        @media (max-width: 720px) {
-            text-align: center;
+
+        @media (max-width: 480px) {
+            width: auto;
         }
     }
 }
