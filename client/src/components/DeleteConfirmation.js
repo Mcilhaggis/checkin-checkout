@@ -41,7 +41,7 @@ function DeleteConfirmation() {
     <div className='modal'>
         <div 
             className='modal-overlay' 
-            onClick={() => handleModal()}
+            onClick={(e) => handleModal(e)}
         />
         <div className='modal-content'>
             {globalState.modalData.asset ? 
