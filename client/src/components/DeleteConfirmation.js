@@ -31,17 +31,11 @@ function DeleteConfirmation() {
         }
     };
 
-    databaseContext.deleteUpdate(null, (data) => {
-        if (data._id) {
-            globalState.updateState({ oldUser: data });
-        }
-    });
-
   return (
     <div className='modal'>
         <div 
             className='modal-overlay' 
-            onClick={() => handleModal()}
+            onClick={(e) => handleModal(e)}
         />
         <div className='modal-content'>
             {globalState.modalData.asset ? 
