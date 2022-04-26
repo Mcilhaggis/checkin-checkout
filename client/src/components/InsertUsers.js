@@ -33,6 +33,12 @@ function InsertUsers() {
         };
     }, [course]);
 
+    const addDecimal = (e) => {
+        if (e.target.value.length === 2) {
+            e.target.value = e.target.value + "."
+        };
+    };
+
     const handleCourseAndAssets = (e) => {
         let toRenderOptionsOrNot = e.target.value;
         setCourse(e.target.value.toUpperCase());
@@ -66,19 +72,18 @@ function InsertUsers() {
         } else if (!course && user) {
             setNewErrorMessage("please insert a course name");
         } else if ((la === "ILO" || la === "LD" || la === "AT") && !asset) {
-            if (la === "ILO") {
-                setNewErrorMessage("please insert ILO asset number(s)");
-            } else if (la === "LD") {
-                setNewErrorMessage("please insert LD asset number(s)");
-            } else {
-                setNewErrorMessage("please insert AT asset number(s)");
-            };
+            setNewErrorMessage(`please insert ${la} asset number(s)`);
+        } else if ((la === "ILO" || la === "LD" || la === "AT") && (asset.match(/[a-zA-Z!@#$%^&*()_+\-=[\]{};':"\\|,<>/?]/g) || asset.charAt(0) === "." || asset.charAt(1) === "." || asset.charAt(3) === "." || asset.charAt(4) === ".")) {
+            setNewErrorMessage(`please insert asset numbers and not letters or special characters`);
         } else if (globalState.users.length > 0) {
 
             for (let j = 0; j < globalState.users.length; j++) {
                 
                 if (course === globalState.users[j].course && la === globalState.users[j].la && la !== "ILO" && la !== "LD" && la !== "AT") {
                     setNewErrorMessage(`${globalState.users[j].user} is currently in ${globalState.users[j].course} ${globalState.users[j].la}`);
+                    break;
+                } else if (course === globalState.users[j].course && la === globalState.users[j].la && asset === globalState.users[j].asset && asset !== "N/A") {
+                    setNewErrorMessage(`${globalState.users[j].user} is currently in ${globalState.users[j].course} ${globalState.users[j].la} ${globalState.users[j].asset}`);
                     break;
                 } else if (course === globalState.users[j].course && la === "All LAs" && globalState.users[j].la.includes("LA")) {
                     setNewErrorMessage(`WPA(s) are currently in ${globalState.users[j].course} LAs`)
@@ -333,7 +338,9 @@ function InsertUsers() {
                 <input 
                     name="asset" 
                     placeholder='asset#'
+                    maxLength={5}
                     value={asset}
+                    onKeyDown={(e) => addDecimal(e)}
                     onChange={(e) => setAsset(e.target.value)}
                     disabled={(la !== "ILO" && la !== "LD" && la !== "AT" && true) || !course}
                 />
@@ -351,6 +358,7 @@ function InsertUsers() {
                     className='parent-check-in-btn'
                     aria-label='check-in'
                     tabIndex='1'
+                    disabled={globalState.showModal ? true : false}
                 >
                     <span 
                         className='check-in-btn'
