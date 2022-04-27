@@ -156,11 +156,11 @@ function GetUsers() {
                                 course === data.course &&                                                                 
                                 <tbody
                                     key={index}
-                                >                                
+                                >
                                     <tr                                         
                                         className='data-item-table-contents'
                                     >
-                                        <td>{data.la}</td>
+                                        <td>{data.la ? data.la : "N/A"}</td>
                                         <td>{data.asset ? data.asset : "N/A"}</td>
                                         <td>{data.user}</td> 
                                         <td>

@@ -1,4 +1,7 @@
-[
+[   
+    {
+        "course": "101"
+    },
     {
         "course": "LAWR1",
         "las": 12
