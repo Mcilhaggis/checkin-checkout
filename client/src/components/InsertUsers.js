@@ -66,13 +66,13 @@ function InsertUsers() {
         };
 
         if (!course && !user) {
-            setNewErrorMessage("you must fill in the required fields");
+            setNewErrorMessage("please fill out the required fields");
         } else if (course && !user) {
             setNewErrorMessage("please insert a wpa name");
         } else if (!course && user) {
             setNewErrorMessage("please insert a course name");
         } else if ((la === "ILO" || la === "LD" || la === "AT") && !asset) {
-            setNewErrorMessage(`please insert ${la} asset number(s)`);
+            setNewErrorMessage(`please insert ${la} asset number`);
         } else if ((la === "ILO" || la === "LD" || la === "AT") && (asset.match(/[a-zA-Z!@#$%^&*()_+\-=[\]{};':"\\|,<>/?]/g) || asset.charAt(0) === "." || asset.charAt(1) === "." || asset.charAt(3) === "." || asset.charAt(4) === ".")) {
             setNewErrorMessage(`please insert asset numbers and not letters or special characters`);
         } else if (globalState.users.length > 0) {
@@ -86,31 +86,31 @@ function InsertUsers() {
                     setNewErrorMessage(`${globalState.users[j].user} is currently in ${globalState.users[j].course} ${globalState.users[j].la} ${globalState.users[j].asset}`);
                     break;
                 } else if (course === globalState.users[j].course && la === "All LAs" && globalState.users[j].la.includes("LA")) {
-                    setNewErrorMessage(`WPA(s) are currently in ${globalState.users[j].course} LAs`)
+                    setNewErrorMessage(`WPAs are currently in ${globalState.users[j].course} LAs`)
                     break;
                 } else if (course === globalState.users[j].course && la.includes("LA") && globalState.users[j].la.includes("All LAs")) {
                     setNewErrorMessage(`${globalState.users[j].user} is currently in all ${globalState.users[j].course} LAs`)
                     break;
                 } else if (course === globalState.users[j].course && la === "All TGs" && globalState.users[j].la.includes("TG")) {
-                    setNewErrorMessage(`WPA(s) are currently in ${globalState.users[j].course} TGs`)
+                    setNewErrorMessage(`WPAs are currently in ${globalState.users[j].course} TGs`)
                     break;
                 } else if (course === globalState.users[j].course && la.includes("TG") && globalState.users[j].la.includes("All TGs")) {
                     setNewErrorMessage(`${globalState.users[j].user} is currently in all ${globalState.users[j].course} TGs`)
                     break;
                 } else if (course === globalState.users[j].course && la === "All ILOs" && globalState.users[j].la.includes("ILO")) {
-                    setNewErrorMessage(`WPA(s) are currently in ${globalState.users[j].course} ILOs`)
+                    setNewErrorMessage(`WPAs are currently in ${globalState.users[j].course} ILOs`)
                     break;
                 } else if (course === globalState.users[j].course && la.includes("ILO") && globalState.users[j].la.includes("All ILOs")) {
                     setNewErrorMessage(`${globalState.users[j].user} is currently in all ${globalState.users[j].course} ILOs`)
                     break;
                 } else if (course === globalState.users[j].course && la === "All LDs" && globalState.users[j].la.includes("LD")) {
-                    setNewErrorMessage(`WPA(s) are currently in ${globalState.users[j].course} LDs`)
+                    setNewErrorMessage(`WPAs are currently in ${globalState.users[j].course} LDs`)
                     break;
                 } else if (course === globalState.users[j].course && la.includes("LD") && globalState.users[j].la.includes("All LDs")) {
                     setNewErrorMessage(`${globalState.users[j].user} is currently in all ${globalState.users[j].course} LDs`)
                     break;
                 } else if (course === globalState.users[j].course && la === "All ATs" && globalState.users[j].la.includes("AT")) {
-                    setNewErrorMessage(`WPA(s) are currently in ${globalState.users[j].course} ATs`)
+                    setNewErrorMessage(`WPAs are currently in ${globalState.users[j].course} ATs`)
                     break;
                 } else if (course === globalState.users[j].course && la.includes("AT") && globalState.users[j].la.includes("All ATs")) {
                     setNewErrorMessage(`${globalState.users[j].user} is currently in all ${globalState.users[j].course} ATs`)
