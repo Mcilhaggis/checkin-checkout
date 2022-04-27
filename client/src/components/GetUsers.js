@@ -151,16 +151,16 @@ function GetUsers() {
                         </tr>
                     </thead>                    
 
-                        {globalState.users && globalState.users.sort((a, b) => /^[0-9]/.test(a.la) - /^[0-9]/.test(b.la) || a.la.localeCompare(b.la, undefined, { numeric: true })).map((data, index) => {
+                        {globalState.users && globalState.users.sort((a, b) => /^[0-9]/.test(a.la) - /^[0-9]/.test(b.la) || a.la.localeCompare(b.la, undefined, { numeric: true }) || a.asset - b.asset).map((data, index) => {
                             return (
                                 course === data.course &&                                                                 
                                 <tbody
                                     key={index}
-                                >                                
+                                >
                                     <tr                                         
                                         className='data-item-table-contents'
                                     >
-                                        <td>{data.la}</td>
+                                        <td>{data.la ? data.la : "N/A"}</td>
                                         <td>{data.asset ? data.asset : "N/A"}</td>
                                         <td>{data.user}</td> 
                                         <td>

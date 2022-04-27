@@ -33,6 +33,12 @@ function InsertUsers() {
         };
     }, [course]);
 
+    const addDecimal = (e) => {
+        if (e.target.value.length === 2) {
+            e.target.value = e.target.value + "."
+        };
+    };
+
     const handleCourseAndAssets = (e) => {
         let toRenderOptionsOrNot = e.target.value;
         setCourse(e.target.value.toUpperCase());
@@ -59,53 +65,58 @@ function InsertUsers() {
             newUser.asset = "";
         };
 
+        if (course === "101") {
+            newUser.la = "";
+        };
+
         if (!course && !user) {
-            setNewErrorMessage("you must fill in the required fields");
+            setNewErrorMessage("please fill out the required fields");
         } else if (course && !user) {
             setNewErrorMessage("please insert a wpa name");
         } else if (!course && user) {
             setNewErrorMessage("please insert a course name");
         } else if ((la === "ILO" || la === "LD" || la === "AT") && !asset) {
-            if (la === "ILO") {
-                setNewErrorMessage("please insert ILO asset number(s)");
-            } else if (la === "LD") {
-                setNewErrorMessage("please insert LD asset number(s)");
-            } else {
-                setNewErrorMessage("please insert AT asset number(s)");
-            };
+            setNewErrorMessage(`please insert ${la} asset number`);
+        } else if ( course !== "101" && (la === "ILO" || la === "LD" || la === "AT") && (asset.match(/[a-zA-Z!@#$%^&*()_+\-=[\]{};':"\\|,<>/?]/g) || asset.charAt(0) === "." || asset.charAt(1) === "." || asset.charAt(3) === "." || asset.charAt(4) === ".")) {
+            setNewErrorMessage(`please insert asset numbers and not letters or special characters`);
         } else if (globalState.users.length > 0) {
 
             for (let j = 0; j < globalState.users.length; j++) {
-                
-                if (course === globalState.users[j].course && la === globalState.users[j].la && la !== "ILO" && la !== "LD" && la !== "AT") {
+                if (course === "101" && asset === globalState.users[j].asset) {
+                    setNewErrorMessage(`${globalState.users[j].user} is currently in ${globalState.users[j].course} ${globalState.users[j].asset}`);
+                    break;
+                } else if (course === globalState.users[j].course && la === globalState.users[j].la && la !== "ILO" && la !== "LD" && la !== "AT") {
                     setNewErrorMessage(`${globalState.users[j].user} is currently in ${globalState.users[j].course} ${globalState.users[j].la}`);
                     break;
+                } else if (course === globalState.users[j].course && la === globalState.users[j].la && asset === globalState.users[j].asset && asset !== "N/A") {
+                    setNewErrorMessage(`${globalState.users[j].user} is currently in ${globalState.users[j].course} ${globalState.users[j].la} ${globalState.users[j].asset}`);
+                    break;
                 } else if (course === globalState.users[j].course && la === "All LAs" && globalState.users[j].la.includes("LA")) {
-                    setNewErrorMessage(`WPA(s) are currently in ${globalState.users[j].course} LAs`)
+                    setNewErrorMessage(`WPAs are currently in ${globalState.users[j].course} LAs`)
                     break;
                 } else if (course === globalState.users[j].course && la.includes("LA") && globalState.users[j].la.includes("All LAs")) {
                     setNewErrorMessage(`${globalState.users[j].user} is currently in all ${globalState.users[j].course} LAs`)
                     break;
                 } else if (course === globalState.users[j].course && la === "All TGs" && globalState.users[j].la.includes("TG")) {
-                    setNewErrorMessage(`WPA(s) are currently in ${globalState.users[j].course} TGs`)
+                    setNewErrorMessage(`WPAs are currently in ${globalState.users[j].course} TGs`)
                     break;
                 } else if (course === globalState.users[j].course && la.includes("TG") && globalState.users[j].la.includes("All TGs")) {
                     setNewErrorMessage(`${globalState.users[j].user} is currently in all ${globalState.users[j].course} TGs`)
                     break;
                 } else if (course === globalState.users[j].course && la === "All ILOs" && globalState.users[j].la.includes("ILO")) {
-                    setNewErrorMessage(`WPA(s) are currently in ${globalState.users[j].course} ILOs`)
+                    setNewErrorMessage(`WPAs are currently in ${globalState.users[j].course} ILOs`)
                     break;
                 } else if (course === globalState.users[j].course && la.includes("ILO") && globalState.users[j].la.includes("All ILOs")) {
                     setNewErrorMessage(`${globalState.users[j].user} is currently in all ${globalState.users[j].course} ILOs`)
                     break;
                 } else if (course === globalState.users[j].course && la === "All LDs" && globalState.users[j].la.includes("LD")) {
-                    setNewErrorMessage(`WPA(s) are currently in ${globalState.users[j].course} LDs`)
+                    setNewErrorMessage(`WPAs are currently in ${globalState.users[j].course} LDs`)
                     break;
                 } else if (course === globalState.users[j].course && la.includes("LD") && globalState.users[j].la.includes("All LDs")) {
                     setNewErrorMessage(`${globalState.users[j].user} is currently in all ${globalState.users[j].course} LDs`)
                     break;
                 } else if (course === globalState.users[j].course && la === "All ATs" && globalState.users[j].la.includes("AT")) {
-                    setNewErrorMessage(`WPA(s) are currently in ${globalState.users[j].course} ATs`)
+                    setNewErrorMessage(`WPAs are currently in ${globalState.users[j].course} ATs`)
                     break;
                 } else if (course === globalState.users[j].course && la.includes("AT") && globalState.users[j].la.includes("All ATs")) {
                     setNewErrorMessage(`${globalState.users[j].user} is currently in all ${globalState.users[j].course} ATs`)
@@ -225,6 +236,7 @@ function InsertUsers() {
                     onChange={(e) => setLa(e.target.value)}
                     autoComplete='off'
                     tabIndex={globalState.showModal ? '-1' : '0'}
+                    disabled={course === "101" ? true : false}
                 >        
 
                     {!render ? 
@@ -333,7 +345,9 @@ function InsertUsers() {
                 <input 
                     name="asset" 
                     placeholder='asset#'
+                    maxLength={course === "101" ? 30 : 5}
                     value={asset}
+                    onKeyDown={course === "101" ? null : (e) => addDecimal(e)}
                     onChange={(e) => setAsset(e.target.value)}
                     disabled={(la !== "ILO" && la !== "LD" && la !== "AT" && true) || !course}
                 />
@@ -351,6 +365,7 @@ function InsertUsers() {
                     className='parent-check-in-btn'
                     aria-label='check-in'
                     tabIndex='1'
+                    disabled={globalState.showModal ? true : false}
                 >
                     <span 
                         className='check-in-btn'
