@@ -36,19 +36,26 @@ function DeleteConfirmation() {
             onClick={(e) => handleModal(e)}
         />
         <div className='modal-content'>
-            {globalState.modalData.asset ? 
+            {!globalState.modalData.la ? 
                 <div>
                     <p>{`${globalState.modalData.user}, please confirm you want to check-out:`}</p>
                     <p>{`Course: ${globalState.modalData.course}`}</p>
-                    <p>{`LA: ${globalState.modalData.la}`}</p>
-                    <p>{`Asset: ${globalState.modalData.asset}`}</p>
-                </div> :
-                <div>
-                    <p>{`${globalState.modalData.user}, please confirm you want to check-out:`}</p>
-                    <p>{`Course: ${globalState.modalData.course}`}</p>
-                    <p>{`LA: ${globalState.modalData.la}`}</p>
+                    <p>{`File: ${globalState.modalData.asset}`}</p>
                 </div>
-            } 
+                : globalState.modalData.asset && globalState.modalData.la !== "N/A" ?
+                <div>
+                    <p>{`${globalState.modalData.user}, please confirm you want to check-out:`}</p>
+                    <p>{`Course: ${globalState.modalData.course}`}</p>
+                    <p>{`Asset: ${globalState.modalData.la}`}</p>
+                    <p>{`Asset#: ${globalState.modalData.asset}`}</p>
+                </div> :                
+                <div>
+                    <p>{`${globalState.modalData.user}, please confirm you want to check-out:`}</p>
+                    <p>{`Course: ${globalState.modalData.course}`}</p>
+                    <p>{`${globalState.modalData.la.includes("TG") || globalState.modalData.la.includes("LA") ? "LA" : "Asset"}: ${globalState.modalData.la}`}</p>
+                </div>
+            }
+            
             <i 
                 className='cancel-btn' 
                 title='cancel'

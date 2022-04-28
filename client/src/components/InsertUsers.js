@@ -36,6 +36,8 @@ function InsertUsers() {
     const addDecimal = (e) => {
         if (e.target.value.length === 2) {
             e.target.value = e.target.value + "."
+        } else if (e.target.value.length === 3 && e.code === "Backspace") {
+            e.target.value = e.target.value.slice(0, -1)
         };
     };
 
