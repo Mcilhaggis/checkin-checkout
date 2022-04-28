@@ -61,7 +61,7 @@ For this application I used the following technologies: React, JavaScript, Sass,
     ![](client/public/images/checkin-rendered.PNG)
 <br>
 <br>
-<br>
+
 ## Checking out of an asset
 
 1. Start by clicking on the accordion that matches your course name:
