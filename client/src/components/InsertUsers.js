@@ -79,6 +79,8 @@ function InsertUsers() {
             setNewErrorMessage("please insert a course name");
         } else if ((la === "ILO" || la === "LD" || la === "AT") && !asset) {
             setNewErrorMessage(`please insert ${la} asset number`);
+        } else if ((la === "ILO" || la === "LD" || la === "AT") && asset.length !== 5) {
+            setNewErrorMessage(`Please insert a 4 digit asset number`);
         } else if ( course !== "101" && (la === "ILO" || la === "LD" || la === "AT") && (asset.match(/[a-zA-Z!@#$%^&*()_+\-=[\]{};':"\\|,<>/?]/g) || asset.charAt(0) === "." || asset.charAt(1) === "." || asset.charAt(3) === "." || asset.charAt(4) === ".")) {
             setNewErrorMessage(`please insert asset numbers and not letters or special characters`);
         } else if (globalState.users.length > 0) {
