@@ -89,8 +89,11 @@ function InsertUsers() {
                 if (course === "101" && asset === globalState.users[j].asset) {
                     setNewErrorMessage(`${globalState.users[j].user} is currently in ${globalState.users[j].course} ${globalState.users[j].asset}`);
                     break;
-                } else if (course === globalState.users[j].course && la === globalState.users[j].la && la !== "ILO" && la !== "LD" && la !== "AT") {
+                } else if (course === globalState.users[j].course && la === globalState.users[j].la && la !== "ILO" && la !== "LD" && la !== "AT" && la !== "NPM") {
                     setNewErrorMessage(`${globalState.users[j].user} is currently in ${globalState.users[j].course} ${globalState.users[j].la}`);
+                    break;
+                } else if (course === globalState.users[j].course && la === globalState.users[j].la && la === "NPM") {
+                    setNewErrorMessage(`${globalState.users[j].user} is currently doing NPM installs in ${globalState.users[j].course}`);
                     break;
                 } else if (course === globalState.users[j].course && la === globalState.users[j].la && asset === globalState.users[j].asset && asset !== "N/A") {
                     setNewErrorMessage(`${globalState.users[j].user} is currently in ${globalState.users[j].course} ${globalState.users[j].la} ${globalState.users[j].asset}`);
@@ -307,6 +310,13 @@ function InsertUsers() {
                             >
                             ACK
                         </option> 
+
+                        <option
+                            name="NPM"
+                            value="NPM"
+                            >
+                            NPM
+                        </option>  
 
                         <option
                             name="All LAs"
