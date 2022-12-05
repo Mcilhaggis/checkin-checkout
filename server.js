@@ -75,24 +75,24 @@ if(process.env.NODE_ENV === 'production') {
 }
 
 // Creating socket connection
-// const server = http.createServer(app)
-// const io = socketIo(server);
-// io.on('connection', client => {
-//   console.log('connected')
+const server = http.createServer(app)
+const io = socketIo(server);
+io.on('connection', client => {
+  console.log('connected')
 
-//   client.on('event', data => { console.log("this is the data: ", data);
+  client.on('event', data => { console.log("this is the data: ", data);
   
-//   io.emit('getUser', data);
+  io.emit('getUser', data);
 
-//   io.emit('saveUser', data);
+  io.emit('saveUser', data);
 
-//   io.emit('deleteUser', data);
+  io.emit('deleteUser', data);
   
-//   });
+  });
 
   
-//   client.on('disconnect', () => { console.log('disconnect')});
-// });
+  client.on('disconnect', () => { console.log('disconnect')});
+});
 
 server.listen(port, () => {
     console.log(`running on port ${port}`)
