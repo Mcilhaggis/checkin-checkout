@@ -757,5 +757,21 @@
     {
         "course": "ARMU8",
         "las": 8
+    },
+    {
+        "course": "AVI1O_FIF-1",
+        "las": 5
+    },
+    {
+        "course": "AVI1O_FIF-2",
+        "las": 5
+    },
+    {
+        "course": "AVI1O_FIF-3",
+        "las": 5
+    },
+    {
+        "course": "AVI1O_FIF-4",
+        "las": 5
     }
 ]
