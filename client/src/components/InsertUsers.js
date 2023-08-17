@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext, useRef} from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { DatabaseRequest, GlobalState } from '../utils/GlobalContext';
 import CourseInfo from '../data/courseinfo.json';
 import axios from 'axios';
@@ -55,14 +55,14 @@ function InsertUsers() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
         const newUser = {
             course: course,
             la: la,
             asset: asset,
             user: user
         };
-        
+
         if (la !== "ILO" && la !== "LD" && la !== "AT") {
             newUser.asset = "";
         };
@@ -79,9 +79,11 @@ function InsertUsers() {
             setNewErrorMessage("please insert a course name");
         } else if ((la === "ILO" || la === "LD" || la === "AT") && !asset) {
             setNewErrorMessage(`please insert ${la} asset number`);
-        } else if ((la === "ILO" || la === "LD" || la === "AT") && course !== "101" && asset.length !== 5) {
-            setNewErrorMessage(`Please insert a 4 digit asset number`);
-        } else if ( course !== "101" && (la === "ILO" || la === "LD" || la === "AT") && (asset.match(/[a-zA-Z!@#$%^&*()_+\-=[\]{};':"\\|,<>/?]/g) || asset.charAt(0) === "." || asset.charAt(1) === "." || asset.charAt(3) === "." || asset.charAt(4) === ".")) {
+        } 
+        // else if ((la === "ILO" || la === "LD" || la === "AT") && course !== "101" && asset.length !== 5) {
+            // setNewErrorMessage(`Please insert a 4 digit asset number`);
+        // } 
+        else if (course !== "101" && (la === "ILO" || la === "LD" || la === "AT") && (asset.match(/[a-zA-Z!@#$%^&*()_+\-=[\]{};':"\\|,<>/?]/g) || asset.charAt(0) === "." || asset.charAt(1) === "." || asset.charAt(3) === "." || asset.charAt(4) === ".")) {
             setNewErrorMessage(`please insert asset numbers and not letters or special characters`);
         } else if (globalState.users.length > 0) {
 
@@ -131,7 +133,7 @@ function InsertUsers() {
                 } else if (j === globalState.users.length - 1) {
 
                     for (let i = 0; i < CourseInfo.length; i++) {
-                        if (i === CourseInfo.length -1 && course !== CourseInfo[i].course) {
+                        if (i === CourseInfo.length - 1 && course !== CourseInfo[i].course) {
                             setNewErrorMessage("invalid course name");
                         };
 
@@ -139,27 +141,27 @@ function InsertUsers() {
                             let validated = true;
 
                             axios.post('/newuser', newUser)
-                            .then((res) => {
-                                globalState.updateState({ validate: true, selected: course });
-                                databaseContext.getUpdate(validated, (data => null));
-                                databaseContext.saveUpdate(newUser, (data => null));
+                                .then((res) => {
+                                    globalState.updateState({ validate: true, selected: course });
+                                    databaseContext.getUpdate(validated, (data => null));
+                                    databaseContext.saveUpdate(newUser, (data => null));
 
-                                setCourse("");
-                                setLa("LA0");
-                                setAsset("");
-                                setUser("");
-                                setRender(false);
-                            })                 
-                            .catch(err => console.log(err))
+                                    setCourse("");
+                                    setLa("LA0");
+                                    setAsset("");
+                                    setUser("");
+                                    setRender(false);
+                                })
+                                .catch(err => console.log(err))
                             break;
-                        }; 
+                        };
                     };
-                }; 
-            };                               
+                };
+            };
         } else {
             for (let i = 0; i < CourseInfo.length; i++) {
-                
-                if (i === CourseInfo.length -1 && course !== CourseInfo[i].course) {
+
+                if (i === CourseInfo.length - 1 && course !== CourseInfo[i].course) {
                     setNewErrorMessage("invalid course name");
                 };
 
@@ -167,22 +169,22 @@ function InsertUsers() {
                     let validated = true;
 
                     axios.post('/newuser', newUser)
-                    .then((res) => {
-                        globalState.updateState({ validate: true, selected: course });
-                        databaseContext.getUpdate(validated, (data => null));
-                        databaseContext.saveUpdate(newUser, (data => null));
+                        .then((res) => {
+                            globalState.updateState({ validate: true, selected: course });
+                            databaseContext.getUpdate(validated, (data => null));
+                            databaseContext.saveUpdate(newUser, (data => null));
 
-                        setCourse("");
-                        setLa("LA0");
-                        setAsset("");
-                        setUser("");
-                        setRender(false);
-                    })                  
-                    .catch(err => console.log(err))
+                            setCourse("");
+                            setLa("LA0");
+                            setAsset("");
+                            setUser("");
+                            setRender(false);
+                        })
+                        .catch(err => console.log(err))
                     break;
-                };                  
-            }; 
-        };        
+                };
+            };
+        };
     };
 
     databaseContext.saveUpdate(null, (data) => {
@@ -194,7 +196,7 @@ function InsertUsers() {
     toast.configure();
 
     const newNotify = () => {
-        if(newErrorMessage) {
+        if (newErrorMessage) {
             toast.error(newErrorMessage, {
                 pauseOnFocusLoss: false,
                 pauseOnHover: false,
@@ -206,192 +208,199 @@ function InsertUsers() {
         };
     };
 
-  return (
-    <div className='insert-users-background'>
-        {newNotify()}
-        <audio      
-            ref={audioRef}        
-        >
-            <source src={error} />
-        </audio>
-        <img className='logo' src={Logo} alt='logo' />
-        <h1>
-            <span className='check-in'>
-                Check-in
-            </span> 
-            <span className='divider'>
-                /
-            </span> 
-            <span className='check-out'>
-                Check-out
-            </span>
-        </h1>
-        <div>
-            <form
-                onSubmit={handleSubmit}
-                autoComplete='on'
+    return (
+        <div className='insert-users-background'>
+            {newNotify()}
+            <audio
+                ref={audioRef}
             >
-                <input
-                    name="course"
-                    placeholder="course"                
-                    value={course}
-                    onChange={(e) => handleCourseAndAssets(e)}
-                    tabIndex={globalState.showModal ? '-1' : '0'}
-                />
-                <select 
-                    name="la"
-                    onChange={(e) => setLa(e.target.value)}
-                    autoComplete='off'
-                    tabIndex={globalState.showModal ? '-1' : '0'}
-                    disabled={course === "101" ? true : false}
-                >        
-
-                    {!render ? 
-                    <>
-                        <option
-                            name="LA0"
-                            value="LA0"
-                            >
-                            LA0
-                        </option>     
-                    </>                    
-                    : null}
-
-                    {numberOfLearningActivites > 0 ? [...Array(numberOfLearningActivites)].map((value, index) => {
-                        return (
-                            <option 
-                                key={index} 
-                                name="la"
-                                value={`LA${index + 1}`}
-                            >
-                                {`LA${index + 1}`}
-                            </option>
-                        )
-                    }):null}     
-                    
-                    {numberOfLearningActivites > 0 ? [...Array(numberOfLearningActivites)].map((value, index) => {
-                        return (
-                            <option 
-                                key={index} 
-                                name="tg"
-                                value={`TG${index + 1}`}
-                            >
-                                {`TG${index + 1}`}
-                            </option>
-                        )
-                    }): null}
-
-                    {render ? 
-                    <>
-                        <option
-                            name="ILO"
-                            value="ILO"
-                            >
-                            ILO
-                        </option>      
-
-                        <option
-                            name="LD"
-                            value="LD"
-                            >
-                            LD
-                        </option>  
-
-                        <option
-                            name="AT"
-                            value="AT"
-                            >
-                            AT
-                        </option> 
-
-                        <option
-                            name="ACK"
-                            value="ACK"
-                            >
-                            ACK
-                        </option> 
-
-                        <option
-                            name="NPM"
-                            value="NPM"
-                            >
-                            NPM
-                        </option>  
-
-                        <option
-                            name="All LAs"
-                            value="All LAs"
-                            >
-                            All LAs
-                        </option> 
-
-                        <option
-                            name="All TGs"
-                            value="All TGs"
-                            >
-                            All TGs
-                        </option>  
-
-                        <option
-                            name="All ILOs"
-                            value="All ILOs"
-                            >
-                            All ILOs
-                        </option>  
-
-                        <option
-                            name="All LDs"
-                            value="All LDs"
-                            >
-                            All LDs
-                        </option>  
-
-                        <option
-                            name="All ATs"
-                            value="All ATs"
-                            >
-                            All ATs
-                        </option>  
-                    </>                    
-                    : null}
-   
-                </select>
-                <input 
-                    name="asset" 
-                    placeholder='asset#'
-                    maxLength={course === "101" ? 30 : 5}
-                    value={asset}
-                    onKeyDown={course === "101" ? null : (e) => addDecimal(e)}
-                    onChange={(e) => setAsset(e.target.value)}
-                    disabled={(la !== "ILO" && la !== "LD" && la !== "AT" && true) || !course}
-                />
-
-                <input 
-                    name="user" 
-                    placeholder='wpa'
-                    value={user}
-                    onChange={(e) => setUser(e.target.value)}
-                    tabIndex={globalState.showModal ? '-1' : '0'}
-                />
-
-                <button                    
-                    type="submit"
-                    className='parent-check-in-btn'
-                    aria-label='check-in'
-                    tabIndex='1'
-                    disabled={globalState.showModal ? true : false}
+                <source src={error} />
+            </audio>
+            <img className='logo' src={Logo} alt='logo' />
+            <h1>
+                <span className='check-in'>
+                    Check-in
+                </span>
+                <span className='divider'>
+                    /
+                </span>
+                <span className='check-out'>
+                    Check-out
+                </span>
+            </h1>
+            <div>
+                <form
+                    onSubmit={handleSubmit}
+                    autoComplete='on'
                 >
-                    <span 
-                        className='check-in-btn'
-                        title='check-in'
+                    <input
+                        name="course"
+                        placeholder="course"
+                        value={course}
+                        onChange={(e) => handleCourseAndAssets(e)}
                         tabIndex={globalState.showModal ? '-1' : '0'}
                     />
-                </button>
+                    <select
+                        name="la"
+                        onChange={(e) => setLa(e.target.value)}
+                        autoComplete='off'
+                        tabIndex={globalState.showModal ? '-1' : '0'}
+                        disabled={course === "101" ? true : false}
+                    >
 
-            </form>            
+                        {!render ?
+                            <>
+                                <option
+                                    name="LA0"
+                                    value="LA0"
+                                >
+                                    LA0
+                                </option>
+                            </>
+                            : null}
+
+                        {numberOfLearningActivites > 0 ? [...Array(numberOfLearningActivites)].map((value, index) => {
+                            return (
+                                <option
+                                    key={index}
+                                    name="la"
+                                    value={`LA${index + 1}`}
+                                >
+                                    {`LA${index + 1}`}
+                                </option>
+                            )
+                        }) : null}
+
+                        {numberOfLearningActivites > 0 ? [...Array(numberOfLearningActivites)].map((value, index) => {
+                            return (
+                                <option
+                                    key={index}
+                                    name="tg"
+                                    value={`TG${index + 1}`}
+                                >
+                                    {`TG${index + 1}`}
+                                </option>
+                            )
+                        }) : null}
+
+                        {numberOfLearningActivites > 0 ? [...Array(numberOfLearningActivites)].map((value, index) => {
+                            return (
+                                <option
+                                    key={index}
+                                    name="assets"
+                                    value={`LA${index + 1}-all assets`}
+                                >
+                                    {`LA${index + 1}-all assets`}
+                                </option>
+                            )
+                        }) : null}
+
+                        {render ?
+                            <>
+                                <option
+                                    name="ILO"
+                                    value="ILO"
+                                >
+                                    ILO
+                                </option>
+
+                                <option
+                                    name="LD"
+                                    value="LD"
+                                >
+                                    LD
+                                </option>
+
+
+
+                                <option
+                                    name="ACK"
+                                    value="ACK"
+                                >
+                                    ACK
+                                </option>
+
+                                <option
+                                    name="NPM"
+                                    value="NPM"
+                                >
+                                    NPM
+                                </option>
+
+                                <option
+                                    name="All LAs"
+                                    value="All LAs"
+                                >
+                                    All LAs
+                                </option>
+
+                                <option
+                                    name="All TGs"
+                                    value="All TGs"
+                                >
+                                    All TGs
+                                </option>
+
+                                <option
+                                    name="All ILOs"
+                                    value="All ILOs"
+                                >
+                                    All ILOs
+                                </option>
+
+                                <option
+                                    name="All LDs"
+                                    value="All LDs"
+                                >
+                                    All LDs
+                                </option>
+
+                                <option
+                                    name="All ATs"
+                                    value="All ATs"
+                                >
+                                    All ATs
+                                </option>
+                            </>
+                            : null}
+
+                    </select>
+                    <input
+                        name="asset"
+                        placeholder='asset#'
+                        maxLength={course === "101" ? 30 : 5}
+                        value={asset}
+                        onKeyDown={course === "101" ? null : (e) => addDecimal(e)}
+                        onChange={(e) => setAsset(e.target.value)}
+                        disabled={(la !== "ILO" && la !== "LD" && la !== "AT" && true) || !course}
+                    />
+
+                    <input
+                        name="user"
+                        placeholder='wpa'
+                        value={user}
+                        onChange={(e) => setUser(e.target.value)}
+                        tabIndex={globalState.showModal ? '-1' : '0'}
+                    />
+
+                    <button
+                        type="submit"
+                        className='parent-check-in-btn'
+                        aria-label='check-in'
+                        tabIndex='1'
+                        disabled={globalState.showModal ? true : false}
+                    >
+                        <span
+                            className='check-in-btn'
+                            title='check-in'
+                            tabIndex={globalState.showModal ? '-1' : '0'}
+                        />
+                    </button>
+
+                </form>
+            </div>
         </div>
-    </div>  
-  )
+    )
 };
 
 export default InsertUsers;
