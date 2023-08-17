@@ -773,5 +773,53 @@
     {
         "course": "AVI1O_FIF-4",
         "las": 5
+    },
+    {
+        "course": "CHC2D_FIF-1",
+        "las": 5
+    },
+    {
+        "course": "CHC2D_FIF-2",
+        "las": 5
+    },
+    {
+        "course": "CHC2D_FIF-3",
+        "las": 5
+    },
+    {
+        "course": "CHC2D_FIF-4",
+        "las": 5
+    },
+    {
+        "course": "CLU3M_FIF-1",
+        "las": 6
+    },
+    {
+        "course": "CLU3M_FIF-2",
+        "las": 5
+    },
+    {
+        "course": "CLU3M_FIF-3",
+        "las": 6
+    },
+    {
+        "course": "CLU3M_FIF-4",
+        "las": 5
+    },
+    {
+        "course": "MTH1W_FIF-1",
+        "las": 12
+    },
+    {
+        "course": "MTH1W_FIF-2",
+        "las": 12
+    },
+    {
+        "course": "MTH1W_FIF-3",
+        "las": 13
+    },
+    {
+        "course": "MTH1W_FIF-4",
+        "las": 11
     }
 ]
