@@ -821,5 +821,37 @@
     {
         "course": "MTH1W_FIF-4",
         "las": 11
+    },
+    {
+        "course": "AVI1O-1",
+        "las": 5
+    },
+    {
+        "course": "AVI1O-2",
+        "las": 5
+    },
+    {
+        "course": "AVI1O-3",
+        "las": 5
+    },
+    {
+        "course": "AVI1O-4",
+        "las": 5
+    },
+    {
+        "course": "HSC4M-1",
+        "las": 5
+    },
+    {
+        "course": "HSC4M-2",
+        "las": 5
+    },
+    {
+        "course": "HSC4M-3",
+        "las": 5
+    },
+    {
+        "course": "HSC4M-4",
+        "las": 5
     }
 ]
