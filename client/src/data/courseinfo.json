@@ -853,5 +853,37 @@
     {
         "course": "HSC4M-4",
         "las": 5
+    },
+    {
+        "course": "MAP4C-1",
+        "las": 3
+    },
+    {
+        "course": "MAP4C-2",
+        "las": 4
+    },
+    {
+        "course": "MAP4C-3",
+        "las": 4
+    },
+    {
+        "course": "MAP4C-4",
+        "las": 4
+    },
+    {
+        "course": "SPH3U-1",
+        "las": 5
+    },
+    {
+        "course": "SPH3U-2",
+        "las": 5
+    },
+    {
+        "course": "SPH3U-3",
+        "las": 5
+    },
+    {
+        "course": "SPH3U-4",
+        "las": 5
     }
 ]
