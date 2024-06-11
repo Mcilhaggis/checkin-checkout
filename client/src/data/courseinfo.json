@@ -885,5 +885,69 @@
     {
         "course": "SPH3U-4",
         "las": 6
+    },
+    {
+        "course": "ELGC1",
+        "las": 6
+    },
+    {
+        "course": "ELGC2",
+        "las": 6
+    },
+    {
+        "course": "ELGC3",
+        "las": 6
+    },
+    {
+        "course": "ELGC4",
+        "las": 6
+    },
+    {
+        "course": "ELGC5",
+        "las": 6
+    },
+    {
+        "course": "ELGC6",
+        "las": 6
+    },
+    {
+        "course": "ELGC7",
+        "las": 6
+    },
+    {
+        "course": "ELGC8",
+        "las": 6
+    },
+    {
+        "course": "ELWM1",
+        "las": 6
+    },
+    {
+        "course": "ELWM2",
+        "las": 6
+    },
+    {
+        "course": "ELWM3",
+        "las": 6
+    },
+    {
+        "course": "ELWM4",
+        "las": 6
+    },
+    {
+        "course": "ELWM5",
+        "las": 6
+    },
+    {
+        "course": "ELWM6",
+        "las": 6
+    },
+    {
+        "course": "ELWM7",
+        "las": 6
+    },
+    {
+        "course": "ELWM8",
+        "las": 6
     }
 ]
