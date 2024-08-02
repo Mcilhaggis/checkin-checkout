@@ -949,5 +949,101 @@
     {
         "course": "ELWM8",
         "las": 6
+    },
+    {
+        "course": "ELES1",
+        "las": 6
+    },
+    {
+        "course": "ELES2",
+        "las": 6
+    },
+    {
+        "course": "ELES3",
+        "las": 6
+    },
+    {
+        "course": "ELES4",
+        "las": 6
+    },
+    {
+        "course": "ELES5",
+        "las": 6
+    },
+    {
+        "course": "ELES6",
+        "las": 6
+    },
+    {
+        "course": "ELES7",
+        "las": 6
+    },
+    {
+        "course": "ELES8",
+        "las": 6
+    },
+    {
+        "course": "ELCI1",
+        "las": 6
+    },
+    {
+        "course": "ELCI2",
+        "las": 6
+    },
+    {
+        "course": "ELCI3",
+        "las": 6
+    },
+    {
+        "course": "ELCI4",
+        "las": 6
+    },
+    {
+        "course": "ELCI5",
+        "las": 6
+    },
+    {
+        "course": "ELCI6",
+        "las": 6
+    },
+    {
+        "course": "ELCI7",
+        "las": 6
+    },
+    {
+        "course": "ELCI8",
+        "las": 6
+    },
+    {
+        "course": "ELIC1",
+        "las": 6
+    },
+    {
+        "course": "ELIC2",
+        "las": 6
+    },
+    {
+        "course": "ELIC3",
+        "las": 6
+    },
+    {
+        "course": "ELIC4",
+        "las": 6
+    },
+    {
+        "course": "ELIC5",
+        "las": 6
+    },
+    {
+        "course": "ELIC6",
+        "las": 6
+    },
+    {
+        "course": "ELIC7",
+        "las": 6
+    },
+    {
+        "course": "ELIC8",
+        "las": 6
     }
 ]
